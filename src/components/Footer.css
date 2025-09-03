@@ -1,0 +1,54 @@
+.footer {
+  background: #222;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.footer-menu,
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-menu li,
+.contact-info li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-menu a,
+.contact-info a {
+  color: #bbb;
+  text-decoration: none;
+}
+
+.footer-menu a:hover,
+.contact-info a:hover {
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-icons a {
+  color: #bbb;
+  transition: color 0.2s;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}

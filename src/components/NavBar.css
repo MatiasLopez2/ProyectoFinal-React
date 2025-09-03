@@ -1,0 +1,98 @@
+button {
+    border-radius: 12px;
+}
+
+input.me-2.form-control {
+    width: 300px;
+}
+
+img.logoHome {
+    width: 100px;
+}
+
+a.navbar-brand {
+    margin-left: 50px;
+}
+
+button.buttonShop:hover {
+    background-color: darkslategrey;
+}
+
+/* Contenedor del nav */
+.navbar-nav {
+  display: flex;
+  justify-content: center;   /* centra horizontal */
+  align-items: center;       /* centra vertical */
+  gap: 2rem;                 /* espacio entre items */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Links principales */
+.nav-link {
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #007bff !important; /* azul bootstrap */
+}
+
+.nav-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: #007bff !important;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Dropdowns */
+.dropdown-menu {
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  transition: background 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+
+/* Mostrar el menú al hacer hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* corrige salto raro */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Transiciones suaves */
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}

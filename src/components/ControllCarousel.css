@@ -1,0 +1,20 @@
+img.d-block.w-100.imgCarousel {
+    max-height: 1000px;
+}
+
+
+.imgCarousel {
+  aspect-ratio: 16 / 9; /* o la proporción de tus banners */
+  object-fit: cover;
+  width: 100%;
+  background-color: #000;
+}
+
+
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: #000000e0;
+    padding: 32px;
+    border-radius: 33px;
+}

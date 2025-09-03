@@ -1,0 +1,5 @@
+.card-img-top {
+  aspect-ratio: 16 / 9; /* o 4 / 3 según tus imágenes */
+  object-fit: cover;
+  width: 100%;
+}

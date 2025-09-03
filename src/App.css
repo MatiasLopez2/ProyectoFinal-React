@@ -1,0 +1,125 @@
+#root {
+    width: -webkit-fill-available;
+    /* padding: 2rem; */
+    text-align: center;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* opcional, previene scroll horizontal */
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.ItemList {
+    display: flex
+;
+    justify-content: space-around;
+}
+
+
+img.h-12.object-contain:hover {
+    width: 143px !important;
+}
+
+
+.grid.grid-cols-2.sm\:grid-cols-3.md\:grid-cols-4.lg\:grid-cols-6.gap-6.justify-items-center {
+    padding: 50px;
+}
+
+.g-4.row.row-cols-md-2.row-cols-1 {
+    padding: 50px;
+}
+
+
+h3.section-title {
+  font-family: 'Inter', 'Poppins', 'Roboto', sans-serif;
+  font-size: 2rem;        /* 32px desktop */
+  font-weight: 700;
+  color: #1f2937;        
+  margin: 3rem 0 1.5rem 0;
+  position: relative;
+  letter-spacing: 0.5px;
+  text-align: center;     
+}
+
+h3.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #3b82f6;    
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  justify-self: center;
+}
+
+
+
+h3.section-title {
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+h3.section-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+  h3.section-title {
+    font-size: 1.75rem;  /* 28px */
+  }
+}
+
+@media (max-width: 768px) {
+  h3.section-title {
+    font-size: 1.5rem;   /* 24px */
+  }
+}
+
+
+
+@media (min-width: 768px) {
+    .row-cols-md-2>* {
+        flex: 0 0 auto;
+        width: 50%;
+        padding: 40px !important;
+    }
+}

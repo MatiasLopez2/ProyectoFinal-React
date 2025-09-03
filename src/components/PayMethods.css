@@ -1,0 +1,48 @@
+.payment-shipping-section {
+  background-color: #f7f7f7;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.payment-shipping-section .container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-block h4 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logos img {
+  max-height: 50px;
+  width: auto;
+  transition: transform 0.3s;
+}
+
+.logos img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .payment-shipping-section .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .section-block {
+    flex: 1;
+  }
+}
