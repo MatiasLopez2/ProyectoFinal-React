@@ -16,25 +16,8 @@ import Services from './components/services';
 import Grid from './components/Grid';
 import Footer from './components/Footer';
 import PayMethods from './components/PayMethods';
+import products from './data/products';
 
-// productos
-import caladora from "./assets/img/caladora.jpg";
-import amoladoraAngular from "./assets/img/amoladoraAngular.jpg";
-import lijadoraSkil from "./assets/img/lijadoraSkil.jpg";
-import lijadoraSTEL401 from "./assets/img/lijadoraSTEL401.jpg";
-import sierraCircular from "./assets/img/SierraCircular.jpg";
-import sierraCircular2 from "./assets/img/SierraCircular2.jpg";
-
-// Array de productos
-const productos = [
-  { title: "Caladora 500w", price: 1000, img: caladora },
-  { title: "Amoladora Angular 830W SKIL", price: 58000, img: amoladoraAngular },
-  { title: "Lijadora Orbital 200W SKIL", price: 60000, img: lijadoraSkil },
-  { title: "Lijadora Orbital 220W STANLEY", price: 4000, img: lijadoraSTEL401 },
-  { title: "Sierra Circular 1700W STANLEY", price: 92000, img: sierraCircular },
-  { title: "Sierra Circular 1400W SKIL", price: 78000, img: sierraCircular2 },
-  { title: "Caladora 800w", price: 7000, img: caladora },
-];
 
 
 function App() {
@@ -70,8 +53,8 @@ function App() {
           1440: { slidesPerView: 5 },
         }}
       >
-        {productos.map((prod, index) => (
-          <SwiperSlide key={`item-${index}`}>
+        {products.map((prod) => (
+          <SwiperSlide key={`item-${prod.id}`}>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

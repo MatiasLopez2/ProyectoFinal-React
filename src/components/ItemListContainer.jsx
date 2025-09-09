@@ -4,15 +4,16 @@ import './ItemListContainer.css'
 import { useState } from "react";
 
 function ItemListContainer(props){
-  const onAddToCart = props.onAddToCart;
-  const [state, setState] = useState("Agregar al Carrito");
-  const [ColorBackground,setColorBackground] = useState("#blue");
+
+    const onAddToCart = props.onAddToCart;
+    const [state, setState] = useState("Agregar al Carrito");
+    const [ColorBackground,setColorBackground] = useState("#blue");
 
 
-  function addtoCart(){      
-      setState("Producto Agregado");
-      setColorBackground("#0e8916");
-      if (onAddToCart) onAddToCart();
+    function addtoCart(){      
+        setState("Producto Agregado");
+        setColorBackground("#0e8916");
+        if (onAddToCart) onAddToCart();
     }
 
     return(

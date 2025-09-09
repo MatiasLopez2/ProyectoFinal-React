@@ -3,10 +3,10 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import './Grid.css'
 
-import bannerStanley from "../assets/img/bannerStanley.jpg";
-import bannerBosch from "../assets/img/bannerBosch.jpg";
-import bannerskil from "../assets/img/banner_skil.jpg";
-import cat4 from "../assets/img/cat1.jpg";
+import bannerStanley from "/img/bannerStanley.jpg";
+import bannerBosch from "/img/bannerBosch.jpg";
+import bannerskil from "/img/banner_skil.jpg";
+import cat4 from "/img/cat1.jpg";
 
 const cardsData = [
   { img: bannerStanley, title: "Categoria 1", text: "Descripcion de la Categoria." },

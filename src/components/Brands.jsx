@@ -1,4 +1,4 @@
-import stanley from "../assets/img/stanley.png"
+import stanley from "/img/stanley.png"
 
 function Brands(){
     return(

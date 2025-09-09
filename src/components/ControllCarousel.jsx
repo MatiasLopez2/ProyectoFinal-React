@@ -1,7 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
-import stanley from "../assets/img/bannerStanley.jpg"; 
-import bannerBosch from "../assets/img/bannerBosch.jpg"; 
-import bannerskil from "../assets/img/banner_skil.jpg"; 
+import stanley from "/img/bannerStanley.jpg"; 
+import bannerBosch from "/img/bannerBosch.jpg"; 
+import bannerskil from "/img/banner_skil.jpg"; 
 import './ControllCarousel.css'
 
 function ControllCarousel() {
