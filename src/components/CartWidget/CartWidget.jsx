@@ -1,15 +1,19 @@
 import { ShoppingCart } from 'lucide-react';
 import './CartWidget.css';
+import { Link } from 'react-router-dom'; 
 
-// const count = 1;
+const count = 1;
 
-function CartWidget ({ count }) {
+// function CartWidget ({ count }) {
+function CartWidget () {
     return (
       <div className="fixed top-4 right-4">
+        <Link to="/cart" >
       <button className="relative buttonShop">
         <ShoppingCart className="w-8 h-8" />
        
       </button>
+      </Link>
       <div className="notification">
         
        {count > 0 && (

@@ -1,92 +1,38 @@
 import './App.css'
-import { useState } from "react";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
-import { motion } from "framer-motion";
 
-import NavBar from './components/NavBar'
-import ControllCarousel from './components/ControllCarousel';
-import ItemListContainer from './components/ItemListContainer';
-import Brands from './components/Brands';
-import Services from './components/services';
-import Grid from './components/Grid';
-import Footer from './components/Footer';
-import PayMethods from './components/PayMethods';
-import products from './data/products';
+import { BrowserRouter, Route, Routes } from 'react-router';
+import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import Home from './components/Home/Home'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import NotFound from "./components/NotFound/NotFound";
 
 
 
 function App() {
-
-  const [cartCount, setCartCount] = useState(0);
-
-  // función que pasaremos a los hijos
-  const handleAddToCart = () => {
-    setCartCount(prev => prev + 1);
-  };
-
-
+ 
   return (
     <>
-      <NavBar cartCount={cartCount}/>
-      <ControllCarousel />
+      <BrowserRouter>
 
-      <div>
-        <h3 className='section-title'>PRODUCTOS EN OFERTA</h3>
-      </div>
+      <NavBar/>
 
-      <Swiper
-        modules={[Navigation]}
-        spaceBetween={20}
-        navigation
-        loop={true}
-        loopFillGroupWithBlank={false}
-        breakpoints={{
-          320: { slidesPerView: 1 },
-          480: { slidesPerView: 2 },
-          768: { slidesPerView: 3 },
-          1024: { slidesPerView: 3 },
-          1440: { slidesPerView: 5 },
-        }}
-      >
-        {products.map((prod) => (
-          <SwiperSlide key={`item-${prod.id}`}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <ItemListContainer
-                title={prod.title}
-                price={prod.price}
-                img={prod.img}
-                onAddToCart={handleAddToCart}
-              />
-            </motion.div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-
-      <Brands />
-
-
-      <h3 className='section-title'>CATEGORIAS RECOMENDADAS</h3>
-
-      <Grid />
-
-
-      <PayMethods />
-      <Services />
-
+      <Routes>
+        <Route path="/" element={ <Home></Home> } />
+        <Route path="/category/:categParam" greeting="Categoria" element={ <div class="category"><ItemListContainer></ItemListContainer></div> } />
+        <Route path="/brand/:brandParam" greeting="Marcas" element={ <div class="category"><ItemListContainer></ItemListContainer></div> } />
+        <Route path="/itemdetail/:idParam" element={ <ItemDetailContainer></ItemDetailContainer> } />
+        <Route path="*" element={<NotFound></NotFound>} />
+        {/* <Route path="/cart" element={<Cart></Cart>} /> */}
+      </Routes>
 
       <Footer />
 
-
+    </BrowserRouter>
     </>
   );
 }

@@ -5,9 +5,10 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import CartWidget from "./CartWidget";
+import CartWidget from "../CartWidget/CartWidget";
 import logo from "/img/logo.png";
 import "./NavBar.css";
+import { Link } from "react-router";
 
 // Componente HoverDropdown para abrir dropdowns con hover
 function HoverDropdown({ title, children }) {
@@ -31,27 +32,38 @@ export default function NavBar({ cartCount }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">
+        <Navbar.Brand as={Link} to="/">
           <img className="logoHome" src={logo} alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link href="#action1">Inicio</Nav.Link>
+            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
 
             <HoverDropdown title="Categorias">
-              <NavDropdown.Item href="#action2">Amoladoras</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Sierras Circular</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Lijadoras</NavDropdown.Item>
-              <NavDropdown.Item href="#action5">Taladros</NavDropdown.Item>
-            </HoverDropdown>
+            <NavDropdown.Item as={Link} to="/category/amoladoras">
+              Amoladoras
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/category/sierras">
+              Sierras Circular
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/category/lijadoras">
+              Lijadoras
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/category/caladoras">
+              Caladoras
+            </NavDropdown.Item>
+          </HoverDropdown>
+
 
             <HoverDropdown title="Marcas">
-              <NavDropdown.Item href="#action6">STANLEY</NavDropdown.Item>
-              <NavDropdown.Item href="#action7">SKIL</NavDropdown.Item>
-              <NavDropdown.Item href="#action8">BOSCH</NavDropdown.Item>
-              <NavDropdown.Item href="#action9">MILWAUKEE</NavDropdown.Item>
-              <NavDropdown.Item href="#action10">DEWALT</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/stanley">STANLEY</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/skil">SKIL</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/bosch">BOSCH</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/milwaukee">MILWAUKEE</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/dewalt">DEWALT</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/makita">MAKITA</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/brand/black+decker">BLACK+DECKER</NavDropdown.Item>
             </HoverDropdown>
           </Nav>
 

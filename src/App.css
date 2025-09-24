@@ -38,6 +38,15 @@ html, body {
   }
 }
 
+.card-title {
+    text-wrap-style: balance;
+}
+
+a {
+    color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+    text-decoration: none !important;
+}
+
 .card {
   padding: 2em;
 }

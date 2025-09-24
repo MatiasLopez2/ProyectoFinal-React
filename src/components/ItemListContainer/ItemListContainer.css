@@ -1,0 +1,75 @@
+.category .products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.category {
+    height: auto;
+    min-height: 1100px;
+    padding: 50px;
+}
+
+.category h2 {
+    font-variant: all-petite-caps;
+    font-size: 60px;
+}
+
+.category .products-list a {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 calc(25% - 20px); /* 4 por fila en desktop */
+  min-width: 220px;
+  max-width: 280px;
+}
+
+.category .card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.category .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.category .card-img-top {
+  /* background: #f9f9f9; */
+  padding: 12px;
+  min-height: 160px;
+  max-height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.category .card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.category .card-body {
+    padding: 10px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+
+.category .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.category .card-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #bf1a1a; 
+  margin-bottom: 0.5rem;
+}
+

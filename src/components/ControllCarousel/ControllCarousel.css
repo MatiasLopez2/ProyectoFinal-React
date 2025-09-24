@@ -1,0 +1,49 @@
+img.d-block.w-100.imgCarousel {
+    max-height: 1000px;
+}
+
+
+.imgCarousel {
+  aspect-ratio: 16 / 9; /* o la proporción de tus banners */
+  object-fit: cover;
+  width: 100%;
+  background-color: #000;
+}
+
+
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: #000000e0;
+    padding: 32px;
+    border-radius: 33px;
+}
+
+.carousel-caption {
+    BACKGROUND-COLOR: #d1d1d1ba;
+    COLOR: BLACK;
+    FONT-SIZE: 20PX;
+    FONT-WEIGHT: 700;
+    BORDER-RADIUS: 20PX;
+    PADDING: 20PX;
+}
+
+.carousel-indicators [data-bs-target] {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 3px;
+    padding: 0;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #ff0000;
+    background-clip: padding-box;
+    border: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s 
+ease;
+}

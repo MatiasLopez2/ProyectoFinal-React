@@ -36,7 +36,7 @@ function Services() {
     <section className="services">
       <div className="services-container">
         {servicesData.map((service) => {
-          const Icon = service.icon; // acá usamos el componente
+          const Icon = service.icon; 
           return (
             <div key={service.id} className="service-card">
               <div className="service-icon">

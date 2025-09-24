@@ -8,6 +8,8 @@ import {
   MessageCircle,
 } from "lucide-react";
 import "./Footer.css";
+import { Link } from 'react-router-dom'; 
+
 
 function Footer() {
   return (
@@ -18,19 +20,19 @@ function Footer() {
           <h4>Cómo comprar</h4>
           <ul className="footer-menu">
             <li>
-              <a href="">
+             <Link to="/terms" >
                 Términos & Condiciones
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="">
+               <Link to="/terms" >
                 Cómo Comprar
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="">
+              <Link to="/policy" >
                 Política de Devoluciones
-              </a>
+              </Link>
             </li>
             
           </ul>
@@ -40,7 +42,7 @@ function Footer() {
           <h4>Contactános</h4>
           <ul className="contact-info">
             <li>
-              <a href="/contacto/">Contacto</a>
+              <Link to="/contact" >Contacto</Link>
             </li>
             <li>
               <MessageCircle size={18} />{" "}
@@ -49,9 +51,9 @@ function Footer() {
             
             <li>
               <Mail size={18} />{" "}
-              <a href="mailto:lacasadelatuerca@gmail.com">
+              <Link to="/contact" >
                 lacasadelatuerca@gmail.com
-              </a>
+              </Link>
             </li>
             <li>
               <MapPin size={18} /> Av. Juan B. Justo 2222, Mar del Plata, Buenos Aires
