@@ -98,7 +98,7 @@ export default function FormCheckout() {
       <Card style={{ maxWidth: "700px", width: "100%" }} className="shadow-lg p-4 border-0">
         <Card.Body>
           <h2 className="text-center mb-4 fw-bold text-primary">
-            Datos del Comprador
+            Datos Personales
           </h2>
 
           <Form noValidate onSubmit={handleSubmit}>
