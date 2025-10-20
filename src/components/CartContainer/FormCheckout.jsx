@@ -103,7 +103,6 @@ export default function FormCheckout() {
 
           <Form noValidate onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="mail">
-              <Form.Label>Correo electrónico</Form.Label>
               <Form.Control
                 type="email"
                 name="mail"
@@ -120,7 +119,6 @@ export default function FormCheckout() {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="nombre">
-                  <Form.Label>Nombre</Form.Label>
                   <Form.Control
                     type="text"
                     name="nombre"
@@ -136,7 +134,6 @@ export default function FormCheckout() {
               </Col>
               <Col md={6}>
                 <Form.Group className="mb-3" controlId="apellido">
-                  <Form.Label>Apellidos</Form.Label>
                   <Form.Control
                     type="text"
                     name="apellido"
