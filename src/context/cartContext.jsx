@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 
 const cartContext = createContext(null);
 
@@ -21,6 +22,7 @@ export function CartContextProvider(props){
         return [...prevCart, { ...newItem, count: quantity }];
         }
     });
+    toast.success(`Producto agregado al carrito!`, { icon: "✅" });
     }
 
     function countItems(){

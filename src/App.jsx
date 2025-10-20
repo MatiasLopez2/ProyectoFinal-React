@@ -18,6 +18,8 @@ import Policy from "./components/Policy/Policy"
 import Terms from "./components/Policy/Terms"
 import HowToBuy from "./components/Policy/HowToBuy"
 import Contact from "./components/Contact/Contact"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -41,6 +43,15 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+          theme="colored"
+        />
       </BrowserRouter>
     </CartContextProvider>
     </>

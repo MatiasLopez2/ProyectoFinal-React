@@ -6,6 +6,7 @@ import ItemCount from "../ItemCount/ItemCount";
 import "./ItemDetailContainer.css";
 import cartContext from "../../context/cartContext";
 
+
 export default function ItemDetailContainer() {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -58,7 +59,7 @@ export default function ItemDetailContainer() {
       <h2 className="fw-bold">{product.title}</h2>
       <div className="price-section">
         
-        <span className="new-price text-success fw-bold">${product.price}</span>
+        <span className="price-highlight fw-bold">${product.price}</span>
       </div>
       <p className="stock">Stock Disponible</p>
 
@@ -78,7 +79,7 @@ export default function ItemDetailContainer() {
 
   {/* Descripción */}
   <Row className="mt-5">
-    <Col md={10} className="mx-auto">
+    <Col md={10} className="mx-auto product-description">
       <h3 className="fw-bold mb-3">Descripción del Producto</h3>
       <p>{product.description}</p>
     </Col>
