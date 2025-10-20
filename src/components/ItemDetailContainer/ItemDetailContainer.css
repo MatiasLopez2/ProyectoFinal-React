@@ -43,6 +43,7 @@
 
 .product-info {
   padding: 20px;
+  justify-items: center;
 }
 
 .price-section {
@@ -95,5 +96,5 @@ p.quantity {
 }
 
 p.stock {
-    justify-self: left;
+    justify-self: center;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts, getProductByCategory } from "../../data/functions";
+import { getProducts, getProductByCategory } from "../../data/firebase";
 import Pagination from "../Pagination/Pagination"; 
 import ItemList from "../ItemList/ItemList"; 
 import "./ItemListContainer.css";

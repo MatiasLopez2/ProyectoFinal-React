@@ -57,6 +57,7 @@
     text-align: center;
     background-color: #ffffff;
     border-radius: 20px;
+    align-content: center;
 }
 
 .category .card-title {

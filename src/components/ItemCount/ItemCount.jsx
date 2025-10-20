@@ -1,6 +1,6 @@
 import { Button, Form } from "react-bootstrap";
 
-export default function ItemCount({ quantity, setQuantity, stock }) {
+export default function ItemCount({ quantity, setQuantity }) {
   return (
     <div className="d-flex align-items-center mb-3">
       <Button
@@ -20,7 +20,7 @@ export default function ItemCount({ quantity, setQuantity, stock }) {
 
       <Button
         variant="outline-secondary"
-        onClick={() => setQuantity(q => Math.min(stock, q + 1))}
+        onClick={() => setQuantity(q => Math.min(q + 1))}
       >
         +
       </Button>

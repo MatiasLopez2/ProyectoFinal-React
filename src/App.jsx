@@ -10,29 +10,39 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import Home from './components/Home/Home'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import NotFound from "./components/NotFound/NotFound";
-
-
+import { CartContextProvider } from './context/cartContext';
+import CartContainer from './components/CartContainer/CartContainer';
+import FormCheckout from './components/CartContainer/FormCheckout';
+import ThankYou from "./components/ThankYou/ThankYou";
+import Policy from "./components/Policy/Policy"
+import Terms from "./components/Policy/Terms"
+import HowToBuy from "./components/Policy/HowToBuy"
+import Contact from "./components/Contact/Contact"
 
 function App() {
- 
+
   return (
     <>
+    <CartContextProvider>      
       <BrowserRouter>
-
-      <NavBar/>
-
-      <Routes>
-        <Route path="/" element={ <Home></Home> } />
-        <Route path="/category/:categParam" greeting="Categoria" element={ <div class="category"><ItemListContainer></ItemListContainer></div> } />
-        <Route path="/brand/:brandParam" greeting="Marcas" element={ <div class="category"><ItemListContainer></ItemListContainer></div> } />
-        <Route path="/itemdetail/:idParam" element={ <ItemDetailContainer></ItemDetailContainer> } />
-        <Route path="*" element={<NotFound></NotFound>} />
-        {/* <Route path="/cart" element={<Cart></Cart>} /> */}
-      </Routes>
-
-      <Footer />
-
-    </BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={ <Home></Home> } />
+          <Route path="/category/:categParam" greeting="Categoria" element={ <div className="category"><ItemListContainer></ItemListContainer></div> } />
+          <Route path="/brand/:brandParam" greeting="Marcas" element={ <div className="category"><ItemListContainer></ItemListContainer></div> } />
+          <Route path="/itemdetail/:idParam" element={ <ItemDetailContainer></ItemDetailContainer> } />
+          <Route path="*" element={<NotFound></NotFound>} />
+          <Route path="/cart" element={<CartContainer></CartContainer>} />
+          <Route path="/FormCheckout" element={<FormCheckout></FormCheckout>} />
+          <Route path="/thankyou/:orderId" element={<ThankYou />} />
+          <Route path="/policy" element={<Policy></Policy>} />
+          <Route path="/terms" element={<Terms></Terms>} />
+          <Route path="/how-to-buy" element={<HowToBuy></HowToBuy>} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </CartContextProvider>
     </>
   );
 }

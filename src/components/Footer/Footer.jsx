@@ -25,7 +25,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-               <Link to="/terms" >
+               <Link to="/how-to-buy" >
                 Cómo Comprar
               </Link>
             </li>
@@ -46,7 +46,7 @@ function Footer() {
             </li>
             <li>
               <MessageCircle size={18} />{" "}
-              <a href="https://wa.me/54223">223</a>
+              <a href="https://wa.me/542235110170" target="_blank">2235110170</a>
             </li>
             
             <li>
@@ -73,7 +73,7 @@ function Footer() {
               <Instagram size={22} />
             </a>
             <a
-              href="https://wa.me/54223"
+              href="https://wa.me/542235110170"
               target="_blank"
               rel="noreferrer"
             >

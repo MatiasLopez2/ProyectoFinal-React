@@ -14,7 +14,6 @@ function Brands(){
       <h3 className='section-title'>ENCONTRÁ TU MARCA</h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center">
         
-          <a href="" className="transition-transform hover:scale-30">
             <picture>
               <Link to="/brand/stanley"><img src={stanley} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
               <Link to="/brand/dewalt"><img src={dewalt} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
@@ -24,7 +23,6 @@ function Brands(){
               <Link to="/brand/milwaukee"><img src={milwaukee} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
               <Link to="/brand/skil"><img src={skil} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
             </picture>
-          </a>
        
       </div>
     </div>

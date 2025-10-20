@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Form, Carousel } from "react-bootstrap";
-import { getProductById } from "../../data/functions"; 
+import { getProductById } from "../../data/firebase"; 
 import ItemCount from "../ItemCount/ItemCount";
 import "./ItemDetailContainer.css";
+import cartContext from "../../context/cartContext";
 
 export default function ItemDetailContainer() {
   const [quantity, setQuantity] = useState(1);
@@ -12,17 +12,8 @@ export default function ItemDetailContainer() {
   const { idParam } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  const {addToCart} = useContext(cartContext);
 
-  const handleAddToCart = () => {
-    console.log("Producto agregado:", product.title, "Cantidad:", quantity);
-    alert("Producto agregado");
-  };
-
-const handleAddToCart2 = () => {
-    console.log("Producto agregado:", product.title, "Cantidad:", quantity);
-    navigate("/cart");
-};
 
   useEffect(() => {
     getProductById(idParam).then(res => {
@@ -67,9 +58,7 @@ const handleAddToCart2 = () => {
       <h2 className="fw-bold">{product.title}</h2>
       <div className="price-section">
         
-        {/* <span className="old-price">${product.oldPrice}</span>  PARA OFERTAS*/} 
         <span className="new-price text-success fw-bold">${product.price}</span>
-        {/* <span className="discount">45% OFF</span> */}
       </div>
       <p className="stock">Stock Disponible</p>
 
@@ -78,18 +67,12 @@ const handleAddToCart2 = () => {
       <ItemCount quantity={quantity} setQuantity={setQuantity} stock={product.stock} />
       
 
-      <Button className="btn-cart w-100 mb-3" onClick={handleAddToCart}>
+      <Button className="btn-cart w-100 mb-3" onClick={() => addToCart(product,quantity)}>
         Agregar al carrito
       </Button>
 
-      <Button className="btn-cart w-100 mb-3" onClick={handleAddToCart2}>
-        Comprar Ahora
-      </Button>
 
-      <div className="shipping">
-        <Form.Control placeholder="Tu código postal" className="mb-2" />
-        <Button variant="outline-dark">Calcular</Button>
-      </div>
+      
     </Col>
   </Row>
 

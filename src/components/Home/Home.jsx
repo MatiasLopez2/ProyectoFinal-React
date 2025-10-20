@@ -4,7 +4,7 @@ import Brands from '../Brands/Brands';
 import Services from '../Services/Services';
 import Grid from '../Grid/Grid';
 import PayMethods from '../PayMethods/PayMethods';
-import { getProducts } from '../../data/functions';
+import { getProducts } from '../../data/firebase';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

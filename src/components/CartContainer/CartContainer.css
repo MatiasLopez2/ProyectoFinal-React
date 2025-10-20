@@ -1,0 +1,14 @@
+.cart-card {
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); /* sombra ligera, fija */
+  transition: none; /* elimina cualquier efecto de hover */
+  transform: none; /* evita movimiento al pasar el mouse */
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.my-5.container {
+    min-height: 950px;
+}

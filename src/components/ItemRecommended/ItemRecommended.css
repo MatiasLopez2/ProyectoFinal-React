@@ -43,6 +43,7 @@ img.card-img {
     text-align: center;
     background-color: #f1f1f1;
     border-radius: 20px;
+    align-content: center;
 }
 .card-title {
   font-size: 1.1rem;

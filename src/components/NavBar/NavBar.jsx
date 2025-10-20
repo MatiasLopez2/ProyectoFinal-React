@@ -10,7 +10,7 @@ import logo from "/img/logo.png";
 import "./NavBar.css";
 import { Link } from "react-router";
 
-// Componente HoverDropdown para abrir dropdowns con hover
+
 function HoverDropdown({ title, children }) {
   const [show, setShow] = useState(false);
 
@@ -67,18 +67,8 @@ export default function NavBar({ cartCount }) {
             </HoverDropdown>
           </Nav>
 
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Búsqueda"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button style={{ margin: "0px 20px 0px 2px" }} variant="outline-success">
-              Search
-            </Button>
-          </Form>
-
+          
+          
           {/* Carrito */}
           <CartWidget count={cartCount}/>
         </Navbar.Collapse>
