@@ -1,0 +1,483 @@
+[
+  {
+    "id": "0qddUImSGccmvV8YL9n5",
+    "title": "Sierra Caladora Stanley 600w",
+    "category": "caladoras",
+    "brand": "stanley",
+    "featured": true,
+    "description": "Caladora eléctrica de 500W, ideal para trabajos de bricolaje y carpintería ligera. Diseñada para cortes rectos y curvos en madera, plástico y láminas delgadas de metal. Su empuñadura ergonómica garantiza un manejo cómodo y seguro. Incluye sistema de cambio rápido de hojas. Recomendable para proyectos domésticos y manualidades.",
+    "price": 1000,
+    "img": [
+      "/img/caladora.jpg"
+    ]
+  },
+  {
+    "id": "0rpY8RsiF8uyRO5Xg8UL",
+    "featured": true,
+    "brand": "skil",
+    "price": 60000,
+    "description": "Lijadora orbital de 200W SKIL, perfecta para acabados finos y superficies lisas en madera, plástico y metal pintado. Su diseño compacto y liviano reduce la fatiga en largas sesiones. Incluye sistema de fijación de lijas con velcro y pinzas para un recambio rápido. Ideal para preparar superficies antes de pintar o barnizar, logrando acabados uniformes y profesionales.",
+    "img": [
+      "/img/LijadoraSkil.jpg",
+      "/img/LijadoraSkil2.jpg"
+    ],
+    "title": "Lijadora Orbital 200W SKIL",
+    "category": "lijadoras"
+  },
+  {
+    "id": "1lYVsTaf2g5pKePNDvp5",
+    "title": "Lijadora orbital DEWALT 21/4 230W- 14000 OPM",
+    "category": "lijadoras",
+    "img": [
+      "/img/lijadoraDewalt2.jpg"
+    ],
+    "price": 7700,
+    "description": "Lijadora orbital Dewalt Advanced 320W, ligera y precisa. Ideal para acabados finos en madera y plástico. Incluye recolección de polvo, empuñadura cómoda y sistema de cambio rápido de lijas. Recomendable para profesionales y aficionados exigentes.",
+    "brand": "dewalt",
+    "featured": false
+  },
+  {
+    "id": "5h2fp1iH8WmXeT3iJbJg",
+    "title": "Sierra Circular 7 1/4Pulgadas 1400W DeWalt",
+    "category": "sierras",
+    "img": [
+      "/img/SierraDewalt.jpg"
+    ],
+    "price": 82000,
+    "description": "Sierra circular Dewalt 1500W, ligera y potente. Ideal para cortes precisos en madera y derivados. Incluye guía paralela, ajuste de profundidad y ángulo, protector de hoja y mango ergonómico. Perfecta para profesionales y aficionados avanzados.",
+    "featured": true,
+    "brand": "dewalt"
+  },
+  {
+    "id": "5hjS0zh5KfiyZYdvHceL",
+    "title": "Amoladora Dewalt Dwe4557 - 180mm 2400w",
+    "category": "amoladoras",
+    "brand": "dewalt",
+    "featured": false,
+    "description": "Amoladora Dewalt 780W Compact, resistente y ligera. Perfecta para trabajos de metal y mampostería. Mango auxiliar y protector ajustable para mayor seguridad. Recomendable para uso doméstico y profesional.",
+    "price": 61000,
+    "img": [
+      "/img/amoladora8.jpg"
+    ]
+  },
+  {
+    "id": "85vbXhv0a1GfV7KHKg2c",
+    "title": "Sierra Caladora Skil 4380 380W",
+    "category": "caladoras",
+    "price": 5200,
+    "description": "Caladora de 650W Skil, perfecta para cortes curvos y rectos en madera y plástico. Incluye cambio rápido de hojas y diseño compacto. Ideal para aficionados al bricolaje. Su empuñadura antideslizante proporciona confort y control durante el uso prolongado.",
+    "img": [
+      "/img/caladora3.jpg"
+    ],
+    "brand": "skil",
+    "featured": false
+  },
+  {
+    "id": "A1n4YBbI7XPO7iHxAIuH",
+    "price": 7900,
+    "description": "Lijadora orbital SKIL Expert 350W, potente y ergonómica. Perfecta para acabados uniformes en madera, plástico y metal pintado. Sistema de fijación rápida de lijas y recolección de polvo. Ideal para profesionales de carpintería y bricolaje avanzado.",
+    "img": [
+      "/img/lijadoraSkilExpert.jpg"
+    ],
+    "brand": "skil",
+    "featured": true,
+    "title": "LIJADORA ORBITAL SKIL 1/3 200W",
+    "category": "lijadoras"
+  },
+  {
+    "id": "AM2K7E36d7Otetrc4x7l",
+    "title": "Sierra Circular 1700W STANLEY",
+    "category": "sierras",
+    "price": 92000,
+    "description": "Sierra circular Stanley de 1700W, ideal para cortes rápidos, profundos y precisos en madera maciza, tableros y contrachapados. Incluye guía paralela y ajuste de ángulo. Carcasa reforzada y diseño ergonómico ofrecen estabilidad y resistencia. Orientada a profesionales que requieren rendimiento constante.",
+    "img": [
+      "/img/SierraCircular.jpg"
+    ],
+    "featured": true,
+    "brand": "stanley"
+  },
+  {
+    "id": "BQlowZIeAXztuxUucXFh",
+    "title": "LIJADORA MAKITA ROTORBITAL 150MM 310W",
+    "category": "lijadoras",
+    "description": "Lijadora orbital Makita 250W, compacta y liviana. Ideal para acabados finos en madera y plástico. Incluye sistema de fijación de lijas con velcro, recolección de polvo y empuñadura ergonómica para largas sesiones de trabajo sin fatiga. Recomendable para uso profesional y doméstico.",
+    "price": 7200,
+    "img": [
+      "/img/lijadoraMakita1.jpg"
+    ],
+    "brand": "makita",
+    "featured": false
+  },
+  {
+    "id": "DF8dPmpJKg288iV2pWVI",
+    "description": "Caladora Dewalt de 550W, ligera y robusta. Diseñada para cortes precisos en madera, plástico y metales blandos. Incluye ajuste de velocidad y cambio rápido de hojas. Empuñadura recubierta en goma que ofrece comodidad y reduce fatiga. Ideal para trabajos domésticos y profesionales de mediana exigencia.",
+    "price": 6000,
+    "img": [
+      "/img/caladora4.jpg"
+    ],
+    "brand": "dewalt",
+    "featured": false,
+    "title": "Sierra Caladora Dewalt Dw-341 550W",
+    "category": "caladoras"
+  },
+  {
+    "id": "DlnBjCJYsKPUNlfLPT3u",
+    "title": "SIERRA CALADORA SKIL 4751 JB DE 750W",
+    "category": "caladoras",
+    "img": [
+      "/img/caladora8.jpg"
+    ],
+    "description": "Caladora Skil Pro 750W, ideal para cortes precisos en madera, laminados y plástico. Diseño ergonómico y base ajustable permite cortes inclinados y curvos. Incluye cambio rápido de hojas y función pendular. Perfecta para profesionales y entusiastas del bricolaje.",
+    "price": 6400,
+    "brand": "skil",
+    "featured": false
+  },
+  {
+    "id": "DsHZ6NToRmKCaCtQooZn",
+    "price": 7500,
+    "description": "Lijadora orbital SKIL Pro 300W, ligera y versátil. Perfecta para acabados precisos y uniformes en madera, plástico y metal pintado. Incluye sistema de cambio rápido de lijas y recolección de polvo. Ideal para profesionales y aficionados que buscan calidad en el acabado.",
+    "img": [
+      "/img/lijadoraSkilPro.jpg"
+    ],
+    "featured": false,
+    "brand": "skil",
+    "title": "Lijadora profesional orbital Skil 7232 negra 50Hz/60Hz 200W",
+    "category": "lijadoras"
+  },
+  {
+    "id": "DtzixLT8eOKH19SX15oo",
+    "title": "SIERRA CALADORA DEWALT DW331K 701W",
+    "category": "caladoras",
+    "img": [
+      "/img/caladora9.jpg"
+    ],
+    "description": "Caladora Dewalt Advanced 850W, potente y precisa. Control de velocidad, base ajustable y cambio rápido de hojas. Recomendada para carpinteros y aficionados avanzados que buscan durabilidad y eficiencia.",
+    "price": 7200,
+    "brand": "dewalt",
+    "featured": true
+  },
+  {
+    "id": "EQgKalmzEm95RYkaxIi8",
+    "brand": "bosch",
+    "featured": true,
+    "img": [
+      "/img/SierraBoschPro.jpg"
+    ],
+    "price": 87000,
+    "description": "Sierra circular Bosch Pro 1700W, ligera, potente y precisa. Ideal para cortes profesionales en madera, tableros y laminados. Incluye ajuste de ángulo y profundidad, guía paralela y protector de hoja. Mango ergonómico para comodidad y control en trabajos prolongados.",
+    "title": "Sierra circular Bosch GKS 235 1700W",
+    "category": "sierras"
+  },
+  {
+    "id": "GgF3YIuvhAPakhk9yQLl",
+    "img": [
+      "/img/LijadoraSTEL401.jpg"
+    ],
+    "description": "Lijadora orbital de 220W Stanley, robusta y confiable para trabajos exigentes en madera, plástico y metales suaves. Base amplia para lijado uniforme y sistema de recolección de polvo. Agarre recubierto en goma para mayor comodidad y control. Recomendable para carpinteros y aficionados que buscan durabilidad y eficiencia.",
+    "price": 4000,
+    "brand": "stanley",
+    "featured": true,
+    "title": "Lijadora Orbital 220W STANLEY",
+    "category": "lijadoras"
+  },
+  {
+    "id": "H20zR4UwSfjBHzfsROkt",
+    "title": "Amoladora Angular BOSCH GWS 8-115 P 800 W",
+    "category": "amoladoras",
+    "brand": "bosch",
+    "featured": true,
+    "img": [
+      "/img/amoladora7.jpg"
+    ],
+    "price": 64000,
+    "description": "Amoladora Bosch Pro 800W, potente y ergonómica. Diseñada para trabajos de corte y desbaste exigentes. Incluye protector ajustable y mango auxiliar. Ideal para profesionales y aficionados avanzados."
+  },
+  {
+    "id": "HF2wszjm4E8WY4gCS9XJ",
+    "description": "Caladora Makita 700W con empuñadura ergonómica y cambio rápido de hojas. Ideal para cortes rectos y curvos en madera, plástico y materiales compuestos. Diseño compacto y control de velocidad que garantiza precisión. Perfecta para aficionados y profesionales del bricolaje.",
+    "price": 6800,
+    "img": [
+      "/img/caladora6.jpg"
+    ],
+    "brand": "makita",
+    "featured": false,
+    "title": "SIERRA CALADORA Makita 720w",
+    "category": "caladoras"
+  },
+  {
+    "id": "LUv3hqsXdxnSjI6ObXzW",
+    "brand": "makita",
+    "featured": true,
+    "img": [
+      "/img/amoladora9.jpg"
+    ],
+    "price": 67000,
+    "description": "Amoladora Makita 920W Pro, potente y duradera. Ideal para corte y desbaste en metal, cerámica y mampostería. Incluye mango auxiliar y protector ajustable. Perfecta para profesionales y proyectos exigentes.",
+    "title": "Amoladora Angular Eléctrica Makita MT M0920B 180mm(7”) 2200W ",
+    "category": "amoladoras"
+  },
+  {
+    "id": "NYG9kzAFyIxTaZTx9KPD",
+    "featured": false,
+    "brand": "skil",
+    "price": 56000,
+    "description": "Amoladora SKIL 700W Compact, ligera y manejable. Ideal para cortes y pulido de metal y mampostería. Incluye protector ajustable y mango auxiliar. Perfecta para aficionados y tareas domésticas.",
+    "img": [
+      "/img/amoladora6.jpg"
+    ],
+    "title": "Amoladora 9002 SKIL 700W",
+    "category": "amoladoras"
+  },
+  {
+    "id": "QHo2WGXA67EBYtnJVIYN",
+    "brand": "dewalt",
+    "featured": true,
+    "img": [
+      "/img/lijadoraDewalt.jpg"
+    ],
+    "price": 6800,
+    "description": "Lijadora de banda Dewalt 350W, potente y resistente, perfecta para desbastes de madera, plástico y metales blandos. Diseño ergonómico y sistema de extracción de polvo. Ideal para profesionales y aficionados exigentes.",
+    "title": "LIJADORA DE BANDA DEWALT DWP352VS 76.2*533.4MM",
+    "category": "lijadoras"
+  },
+  {
+    "id": "Qagdu0lQDmhKzZyn0jE5",
+    "brand": "skil",
+    "featured": false,
+    "description": "Sierra circular SKIL 1400W, ligera y práctica para cortes de precisión en madera y derivados. Peso reducido y diseño compacto, ideal para uso doméstico y semi-profesional. Ajuste de profundidad y ángulo, protector de hoja y mango ergonómico para seguridad y control.",
+    "price": 78000,
+    "img": [
+      "/img/SierraCircular2.jpg"
+    ],
+    "title": "Sierra Circular 7 1/4 1400 W 6000 Rpm",
+    "category": "sierras"
+  },
+  {
+    "id": "RB5uzVegUMljkfioQHpN",
+    "price": 68000,
+    "description": "Amoladora Black+Decker 950W, potente y fácil de manejar. Ideal para cortes rápidos y desbaste de metal y cerámica. Incluye mango lateral y protector ajustable. Recomendada para proyectos de bricolaje y trabajos semi-profesionales.",
+    "img": [
+      "/img/amoladora5.jpg"
+    ],
+    "brand": "black+decker",
+    "featured": true,
+    "title": "Amoladora Black and Decker G2209",
+    "category": "amoladoras"
+  },
+  {
+    "id": "TNVAgrozlvM3jxaKVDxI",
+    "title": "Caladora Bosch GST 75 E",
+    "category": "caladoras",
+    "img": [
+      "/img/caladora2.jpg"
+    ],
+    "description": "Caladora Bosch de 800W con control de velocidad variable para cortes precisos en madera, metal y plástico. Incluye función pendular y empuñadura ergonómica para mayor comodidad. Recomendable para entusiastas del bricolaje y profesionales que requieren precisión y potencia.",
+    "price": 7000,
+    "brand": "bosch",
+    "featured": true
+  },
+  {
+    "id": "TYrOdnN5DD1rsKbApmsE",
+    "title": "SIERRA CIRCULAR BOSCH 7 1/4 GKS 20-65 2000W",
+    "category": "sierras",
+    "brand": "bosch",
+    "featured": false,
+    "img": [
+      "/img/SierraBosch.jpg"
+    ],
+    "price": 79000,
+    "description": "Sierra circular Bosch 1400W, ligera y práctica para cortes precisos. Ideal para madera, tableros y laminados. Incluye guía paralela, ajuste de ángulo y protector de hoja. Mango ergonómico y diseño compacto para mayor seguridad y control."
+  },
+  {
+    "id": "Uc9ykW4Q0m2HjmLbkIc5",
+    "brand": "makita",
+    "featured": true,
+    "price": 8000,
+    "description": "Lijadora de banda Makita Pro 380W, potente y duradera. Perfecta para desbaste rápido de madera y plástico. Sistema de extracción de polvo y empuñadura ergonómica. Ideal para trabajos profesionales de carpintería.",
+    "img": [
+      "/img/lijadoraMakitaPro.jpg"
+    ],
+    "title": "Lijadora de Acabado Orbital a Batería 18V Makita DBO380Z 93x185mm",
+    "category": "lijadoras"
+  },
+  {
+    "id": "Veeiua9n092QGbiu4ApC",
+    "description": "Sierra circular Black+Decker 1700W, robusta y confiable para trabajos exigentes. Corte preciso y rápido en madera maciza, tableros y laminados. Ajuste de ángulo y profundidad, guía paralela y mango ergonómico. Recomendada para uso semi-profesional y profesional.",
+    "price": 88000,
+    "img": [
+      "/img/SierraBD.jpg"
+    ],
+    "brand": "black+decker",
+    "featured": true,
+    "title": "Sierra Circular Black & Decker",
+    "category": "sierras"
+  },
+  {
+    "id": "YOdNp5bntHyHucudb9gJ",
+    "img": [
+      "/img/SierraMakita.jpg"
+    ],
+    "price": 85000,
+    "description": "Sierra circular Makita 1600W, potente y duradera. Ideal para cortes rápidos y precisos en madera maciza, tableros y laminados. Incluye guía paralela, ajuste de ángulo y empuñadura ergonómica. Recomendada para profesionales de carpintería.",
+    "featured": true,
+    "brand": "makita",
+    "title": "Sierra Circular Makita HS7010K de 1600W",
+    "category": "sierras"
+  },
+  {
+    "id": "ZA1XtLbWkgHeqYg6Q4zG",
+    "price": 5500,
+    "description": "Caladora Bosch Advanced 600W, ligera y versátil, base ajustable y control de velocidad variable. Perfecta para cortes finos y medianos en madera y plástico. Incluye cambio rápido de hojas y empuñadura cómoda. Recomendable para tareas domésticas y proyectos de bricolaje.",
+    "img": [
+      "/img/caladora7.jpg"
+    ],
+    "featured": true,
+    "brand": "bosch",
+    "title": "SIERRA CALADORA BOSCH GST 65 BE 400W",
+    "category": "caladoras"
+  },
+  {
+    "id": "auhM3qugBgdLYz9RANxP",
+    "title": "Caladora Black & Decker JS700k Linea PRO",
+    "category": "caladoras",
+    "brand": "black+decker",
+    "featured": true,
+    "description": "Caladora Black+Decker Pro 950W, ideal para proyectos de bricolaje y carpintería semi-profesional. Cortes rectos y curvos con precisión, función pendular y control de velocidad variable. Empuñadura antideslizante para comodidad y seguridad prolongada.",
+    "price": 7800,
+    "img": [
+      "/img/caladora10.jpg"
+    ]
+  },
+  {
+    "id": "c0QJ0xnLrBlFHjfLi1z7",
+    "brand": "makita",
+    "featured": true,
+    "description": "Amoladora Makita 850W, compacta y resistente. Ideal para trabajos de corte y desbaste en metal y mampostería. Incluye mango lateral y protector de disco ajustable. Diseño ergonómico que reduce la fatiga durante el uso prolongado.",
+    "price": 63000,
+    "img": [
+      "/img/amoladora4.jpg"
+    ],
+    "title": "AMOLADORA ANGULAR - 850W - MAKITA",
+    "category": "amoladoras"
+  },
+  {
+    "id": "ceEu5Vf52zMsIjEKwXKs",
+    "brand": "bosch",
+    "featured": true,
+    "price": 6500,
+    "description": "Lijadora de banda Bosch 400W, ideal para desbaste rápido y lijado de superficies grandes en madera. Su diseño ergonómico y sistema de extracción de polvo hacen el trabajo más cómodo y limpio. Perfecta para carpinteros y proyectos de bricolaje avanzados.",
+    "img": [
+      "/img/lijadoraBosch.jpg"
+    ],
+    "title": "Lijadora Roto Orbital 220V 400W",
+    "category": "lijadoras"
+  },
+  {
+    "id": "dGNCBaRt2bUQ7zdC1y77",
+    "brand": "black+decker",
+    "featured": true,
+    "price": 90000,
+    "description": "Sierra circular Black+Decker Pro 1800W, potente y confiable. Corte rápido y preciso en madera maciza, tableros y laminados. Ajuste de ángulo y profundidad, guía paralela y mango ergonómico. Ideal para trabajos semi-profesionales y profesionales.",
+    "img": [
+      "/img/SierraBDPro.jpg"
+    ],
+    "title": "Sierra Circular Black & Decker",
+    "category": "sierras"
+  },
+  {
+    "id": "m6pqSlZjBBruUP95532D",
+    "title": "Lijadora orbital eléctrica 200 W",
+    "category": "lijadoras",
+    "brand": "black+decker",
+    "featured": true,
+    "img": [
+      "/img/lijadoraBD.jpg"
+    ],
+    "description": "Lijadora orbital Black+Decker 280W, compacta y fácil de manejar. Ideal para lijado fino y preparación de superficies. Sistema de fijación rápida de lijas y empuñadura ergonómica. Recomendada para trabajos domésticos y semi-profesionales.",
+    "price": 6200
+  },
+  {
+    "id": "nJAc1AcuBKoYsjBji6Ea",
+    "brand": "makita",
+    "featured": true,
+    "img": [
+      "/img/SierraMakitaPro.jpg"
+    ],
+    "price": 86000,
+    "description": "Sierra circular Makita Pro 1600W, potente y ergonómica. Ideal para cortes profesionales en madera, tableros y laminados. Incluye ajuste de ángulo, guía paralela y protector de hoja. Recomendada para carpinteros y aficionados avanzados.",
+    "title": "Sierra Circular Makita Hs7010 1600 Watts",
+    "category": "sierras"
+  },
+  {
+    "id": "pgXS5LerEpCLNX3SrT6D",
+    "title": "Amoladora Angular 115mm 750w Dewalt",
+    "category": "amoladoras",
+    "brand": "dewalt",
+    "featured": false,
+    "img": [
+      "/img/amoladora3.jpg"
+    ],
+    "description": "Amoladora angular Dewalt 750W, ideal para desbaste y corte de metal y cerámica. Diseño ergonómico y ligera. Incluye mango auxiliar y protector de disco ajustable. Recomendada para bricolaje y profesionales de mediana exigencia.",
+    "price": 62000
+  },
+  {
+    "id": "pypGCRsmPJeze22AVPH4",
+    "title": "Amoladora Angular 115mm 4.5″ 830W",
+    "category": "amoladoras",
+    "brand": "bosch",
+    "featured": true,
+    "price": 65000,
+    "description": "Amoladora Bosch 900W, compacta y potente. Perfecta para cortes, desbastes y pulidos en metal y mampostería. Protector ajustable, mango lateral ergonómico y disco de alto rendimiento. Recomendada para trabajos profesionales y domésticos de alta exigencia.",
+    "img": [
+      "/img/amoladora2.jpg"
+    ]
+  },
+  {
+    "id": "tyXvilKIaBxI8NURWp65",
+    "title": "Amoladora Angular 830W SKIL",
+    "category": "amoladoras",
+    "img": [
+      "/img/amoladoraAngular.jpg"
+    ],
+    "price": 58000,
+    "description": "Amoladora angular 830W SKIL, diseñada para cortes y desbastes en metal, mampostería y cerámica. Protector de disco ajustable y mango auxiliar que facilita el control. Compacta y ligera, permite trabajar en espacios reducidos. Perfecta para corte de caños, pulido de superficies metálicas o remoción de óxido y pintura.",
+    "brand": "skil",
+    "featured": true
+  },
+  {
+    "id": "uLzCEnITu9rsc6txK00P",
+    "title": "SIERRA CALADORA Black&decker Ks501",
+    "category": "caladoras",
+    "brand": "black+decker",
+    "featured": true,
+    "img": [
+      "/img/caladora5.jpg"
+    ],
+    "description": "Caladora potente de 900W Black+Decker, adecuada para cortes rápidos y precisos en madera, laminados y plástico. Función pendular, control de velocidad variable y base ajustable. Recomendada para proyectos exigentes y trabajos semi-profesionales.",
+    "price": 7500
+  },
+  {
+    "id": "veg3RLHFvD6Qe2J7SFeu",
+    "img": [
+      "/img/SierraDewalt2.jpg"
+    ],
+    "price": 83000,
+    "description": "Sierra circular Dewalt Advanced 1500W, ligera y potente. Perfecta para cortes precisos en madera y derivados. Incluye guía paralela, ajuste de ángulo y profundidad, protector de hoja y mango ergonómico. Ideal para uso profesional y doméstico avanzado.",
+    "brand": "dewalt",
+    "featured": true,
+    "title": "Sierra Circular 7-1/4” 1500W",
+    "category": "sierras"
+  },
+  {
+    "id": "yh49mntKOEer6YZTiQoE",
+    "title": "AMOLADORA ANGULAR BLACK & DECKER 4 1/2 G650 650W",
+    "category": "amoladoras",
+    "img": [
+      "/img/amoladora10.jpg"
+    ],
+    "price": 70000,
+    "description": "Amoladora Black+Decker Pro 1000W, diseñada para trabajos de alto rendimiento. Cortes y desbaste precisos en metal y mampostería. Mango auxiliar y protector ajustable incluidos. Ideal para tareas profesionales.",
+    "brand": "black+decker",
+    "featured": true
+  }
+]

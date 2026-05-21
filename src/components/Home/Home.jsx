@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 export default function Home(){
   const [products, setProducts] = useState([]);
 
-
   useEffect(() => {
     getProducts()
       .then(setProducts)
