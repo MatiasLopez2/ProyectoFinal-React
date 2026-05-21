@@ -393,7 +393,7 @@
     "id": 40,
     "title": "Sierra circular Bosch GKS 235 1700W",
     "price": 87000,
-    "img": ["/img/SierraBoschPro.jpg"],
+    "img": ["/img/SierraBoschPro.jpg", "/img/SierraBDPro.jpg"],
     "category": "sierras",
     "brand": "bosch",
     "description": "Sierra circular Bosch Pro 1700W, ligera, potente y precisa. Ideal para cortes profesionales en madera, tableros y laminados. Incluye ajuste de ángulo y profundidad, guía paralela y protector de hoja. Mango ergonómico para comodidad y control en trabajos prolongados.",
