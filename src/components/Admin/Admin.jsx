@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Button, Card, Alert, Form } from "react-bootstrap";
-import { downloadProductsFromFirestore, fullSyncProducts, deleteAllProducts } from "../../data/firebase";
+import { downloadProductsFromFirestore, fullSyncProducts, deleteAllProducts, fullSyncProductsFromFile } from "../../data/firebase";
 
 // Contraseña cifrada (usa una variable de entorno en producción)
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "admin123";
@@ -10,6 +10,52 @@ export default function Admin() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.type === "application/json") {
+      setSelectedFile(file);
+      setMessage({ type: 'info', text: `📄 Archivo seleccionado: ${file.name}` });
+    } else {
+      setSelectedFile(null);
+      setMessage({ type: 'danger', text: '❌ Por favor selecciona un archivo JSON válido' });
+    }
+  };
+
+  const handleSyncFromFile = async () => {
+    if (!selectedFile) {
+      setMessage({ type: 'danger', text: '❌ Debes seleccionar un archivo JSON primero' });
+      return;
+    }
+
+    if (!globalThis.confirm(`🔄 ¿Sincronizar productos desde el archivo "${selectedFile.name}"?`)) {
+      return;
+    }
+
+    try {
+      // Leer el archivo JSON
+      const fileContent = await selectedFile.text();
+      const productsArray = JSON.parse(fileContent);
+
+      if (!Array.isArray(productsArray)) {
+        throw new Error('El archivo debe contener un array de productos');
+      }
+
+      // Sincronizar con Firestore
+      const result = await fullSyncProductsFromFile(productsArray);
+      setMessage({ 
+        type: 'success', 
+        text: `✅ Sincronización completa desde archivo! ✏️ Actualizados: ${result.updated} | ➕ Agregados: ${result.added} | 🗑️ Eliminados: ${result.deleted}` 
+      });
+      setSelectedFile(null);
+      // Resetear el input de archivo
+      document.getElementById('fileInput').value = '';
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage({ type: 'danger', text: '❌ Error al procesar archivo: ' + error.message });
+    }
+  };
 
   const handleFullSync = async () => {
     if (!globalThis.confirm('🔄 Sincronización completa: actualizará, agregará y eliminará productos según el JSON. ¿Continuar?')) {
@@ -131,12 +177,44 @@ export default function Admin() {
 
           <div className="d-grid gap-3">
             <div>
-              <h5>🔄 Sincronización Completa</h5>
+              <h5>📤 Cargar archivo JSON y sincronizar</h5>
               <p className="text-muted">
-                Sincroniza Firestore con el archivo products.json:
+                Selecciona un archivo products.json desde tu ordenador y sincroniza Firestore:
                 <br/>• ✏️ Actualiza productos modificados
                 <br/>• ➕ Agrega productos nuevos
-                <br/>• 🗑️ Elimina productos que ya no están en el JSON
+                <br/>• 🗑️ Elimina productos que ya no están en el archivo
+              </p>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  id="fileInput"
+                  type="file"
+                  accept=".json"
+                  onChange={handleFileChange}
+                />
+                {selectedFile && (
+                  <small className="text-success d-block mt-2">✓ Archivo listo: {selectedFile.name}</small>
+                )}
+              </Form.Group>
+              <Button 
+                variant="primary" 
+                size="lg" 
+                onClick={handleSyncFromFile}
+                className="w-100"
+                disabled={!selectedFile}
+              >
+                📤 SINCRONIZAR DESDE ARCHIVO
+              </Button>
+              <small className="text-info d-block mt-2">✓ Opción recomendada para producción (Vercel)</small>
+            </div>
+
+            <hr />
+
+            <div>
+              <h5>🔄 Sincronización desde código</h5>
+              <p className="text-muted">
+                Sincroniza con el archivo products.json incluido en el código:
+                <br/>• Solo funciona en desarrollo local
+                <br/>• No disponible en producción
               </p>
               <Button 
                 variant="primary" 

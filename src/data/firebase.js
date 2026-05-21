@@ -310,3 +310,86 @@ export async function replaceAllProducts() {
     throw error;
   }
 }
+
+// Función de sincronización completa con productos desde archivo cargado
+export async function fullSyncProductsFromFile(productsArray) {
+  try {
+    console.log('🔄 Iniciando sincronización desde archivo...');
+    
+    // Obtener productos actuales de Firestore
+    const currentProducts = await getProducts();
+    console.log(`📦 Productos en Firestore: ${currentProducts.length}`);
+    console.log(`📄 Productos en archivo: ${productsArray.length}`);
+    
+    // Crear mapas para comparación
+    const firestoreMap = new Map();
+    const jsonMap = new Map();
+    
+    // Mapear productos de Firestore por productId
+    currentProducts.forEach(prod => {
+      if (prod.productId) {
+        firestoreMap.set(prod.productId, prod.id);
+      }
+    });
+    
+    // Mapear productos del archivo por id
+    productsArray.forEach(prod => {
+      if (prod.id) {
+        jsonMap.set(prod.id, prod);
+      }
+    });
+    
+    let added = 0;
+    let updated = 0;
+    let deleted = 0;
+    
+    const batch = writeBatch(db);
+    const itemsRef = collection(db, 'items');
+    
+    // 1. ACTUALIZAR y AGREGAR productos del archivo
+    for (let item of productsArray) {
+      if (!item.id) {
+        console.warn(`⚠️ Producto sin ID, saltando: ${item.title}`);
+        continue;
+      }
+      
+      const productData = { ...item, productId: item.id };
+      delete productData.id;
+      
+      const firestoreId = firestoreMap.get(item.id);
+      
+      if (firestoreId) {
+        // Producto existe, actualizarlo
+        console.log(`🔄 Actualizando: ${item.title} (ID: ${item.id})`);
+        const productRef = doc(db, 'items', firestoreId);
+        batch.set(productRef, productData, { merge: true });
+        updated++;
+      } else {
+        // Producto no existe, agregarlo
+        console.log(`➕ Agregando: ${item.title} (ID: ${item.id})`);
+        const newProductRef = doc(itemsRef);
+        batch.set(newProductRef, productData);
+        added++;
+      }
+    }
+    
+    // 2. ELIMINAR productos que están en Firestore pero NO en el archivo
+    for (let firestoreProd of currentProducts) {
+      if (firestoreProd.productId && !jsonMap.has(firestoreProd.productId)) {
+        console.log(`🗑️ Eliminando: ${firestoreProd.title} (ID: ${firestoreProd.productId})`);
+        const productRef = doc(db, 'items', firestoreProd.id);
+        batch.delete(productRef);
+        deleted++;
+      }
+    }
+    
+    console.log('💾 Guardando cambios en Firestore...');
+    await batch.commit();
+    console.log('✅ Sincronización completa finalizada');
+    
+    return { added, updated, deleted, total: added + updated };
+  } catch (error) {
+    console.error('❌ Error en fullSyncProductsFromFile:', error);
+    throw error;
+  }
+}
