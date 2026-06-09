@@ -13,6 +13,7 @@ export default function ItemListContainer() {
   const [categoryName, setCategoryName] = useState("");
   const [allCategories, setAllCategories] = useState([]); // Todas las categorías
   const [expandedCategories, setExpandedCategories] = useState({}); // Estado de expansión
+  const [selectedFilter, setSelectedFilter] = useState(null); // Filtro nivel 3 seleccionado
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
@@ -76,9 +77,15 @@ export default function ItemListContainer() {
   if (loading) return <p>Cargando productos...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const filtered = products.filter((p) => 
+  // Filtrar productos
+  let filtered = products.filter((p) => 
     brandParam ? p.brand === brandParam : true
   );
+
+  // Aplicar filtro de nivel 3 si está seleccionado
+  if (selectedFilter) {
+    filtered = filtered.filter(p => p.subcategory === selectedFilter);
+  }
 
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
@@ -98,7 +105,7 @@ export default function ItemListContainer() {
     }));
   };
 
-  // Renderizar árbol de categorías recursivo
+  // Renderizar árbol de categorías recursivo (solo nivel 1 y 2)
   const renderCategoryTree = (parentId = null, level = 0) => {
     const categories = allCategories
       .filter(cat => cat.parentId === parentId)
@@ -106,8 +113,11 @@ export default function ItemListContainer() {
 
     if (categories.length === 0) return null;
 
+    // Detener en nivel 2 (no mostrar nivel 3)
+    if (level >= 2) return null;
+
     return categories.map(category => {
-      const hasChildren = allCategories.some(cat => cat.parentId === category.id);
+      const hasChildren = allCategories.some(cat => cat.parentId === category.id && level < 1);
       const isExpanded = expandedCategories[category.id];
       const isActive = categParam === category.value;
 
@@ -188,10 +198,18 @@ export default function ItemListContainer() {
     });
   };
 
+  // Obtener filtros de nivel 3 para la categoría actual
+  const currentCategory = allCategories.find(cat => cat.value === categParam);
+  const level3Filters = currentCategory 
+    ? allCategories
+        .filter(cat => cat.parentId === currentCategory.id)
+        .sort((a, b) => a.name.localeCompare(b.name))
+    : [];
+
   return (
     <div className="category">
       {/* Título principal */}
-      <h2 style={{ marginBottom: "30px", textTransform: "capitalize" }}>
+      <h2 style={{ marginBottom: "16px", textTransform: "capitalize" }}>
         {pageTitle}
       </h2>
 
@@ -238,6 +256,106 @@ export default function ItemListContainer() {
 
         {/* Contenido principal */}
         <div style={{ flex: 1, minWidth: 0 }}>
+          
+          {/* Barra de filtros (nivel 3) - Solo si existen */}
+          {level3Filters.length > 0 && (
+            <div style={{
+              marginBottom: '20px',
+              padding: '8px 12px',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '6px',
+              border: '1px solid #e0e0e0',
+              maxWidth: 'fit-content'
+            }}>
+              <div style={{
+                fontSize: '0.7rem',
+                fontWeight: '600',
+                color: '#666',
+                marginBottom: '6px',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
+              }}>
+                Filtros
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: '6px',
+                flexWrap: 'wrap'
+              }}>
+                {/* Botón "Todos" */}
+                <button
+                  onClick={() => {
+                    setSelectedFilter(null);
+                    setCurrentPage(1);
+                  }}
+                  style={{
+                    padding: '3px 10px',
+                    border: selectedFilter === null ? '2px solid #007bff' : '1px solid #dee2e6',
+                    borderRadius: '14px',
+                    backgroundColor: selectedFilter === null ? '#007bff' : '#fff',
+                    color: selectedFilter === null ? '#fff' : '#495057',
+                    fontSize: '0.75rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    outline: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (selectedFilter !== null) {
+                      e.target.style.borderColor = '#007bff';
+                      e.target.style.color = '#007bff';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (selectedFilter !== null) {
+                      e.target.style.borderColor = '#dee2e6';
+                      e.target.style.color = '#495057';
+                    }
+                  }}
+                >
+                  Todos
+                </button>
+
+                {/* Filtros de nivel 3 */}
+                {level3Filters.map(filter => (
+                  <button
+                    key={filter.value}
+                    onClick={() => {
+                      setSelectedFilter(filter.value);
+                      setCurrentPage(1);
+                    }}
+                    style={{
+                      padding: '3px 10px',
+                      border: selectedFilter === filter.value ? '2px solid #007bff' : '1px solid #dee2e6',
+                      borderRadius: '14px',
+                      backgroundColor: selectedFilter === filter.value ? '#007bff' : '#fff',
+                      color: selectedFilter === filter.value ? '#fff' : '#495057',
+                      fontSize: '0.75rem',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      outline: 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (selectedFilter !== filter.value) {
+                        e.target.style.borderColor = '#007bff';
+                        e.target.style.color = '#007bff';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (selectedFilter !== filter.value) {
+                        e.target.style.borderColor = '#dee2e6';
+                        e.target.style.color = '#495057';
+                      }
+                    }}
+                  >
+                    {filter.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           <ItemList products={currentProducts} />
 
           <Pagination
