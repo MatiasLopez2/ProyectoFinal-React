@@ -81,7 +81,7 @@ export default function ItemDetailContainer() {
   <Row className="mt-5">
     <Col md={10} className="mx-auto product-description">
       <h3 className="fw-bold mb-3">Descripción del Producto</h3>
-      <p>{product.description}</p>
+      <p style={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{product.description}</p>
     </Col>
   </Row>
 </Container>
