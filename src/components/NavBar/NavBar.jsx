@@ -35,6 +35,7 @@ export default function NavBar({ cartCount }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredSubcategories, setFilteredSubcategories] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
 
   useEffect(() => {
     loadCategoriesAndBrands();
@@ -83,71 +84,115 @@ export default function NavBar({ cartCount }) {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
 
             <HoverDropdown title="Categorias">
-              {categories
-                .filter(cat => !cat.parentId) // Solo categorías principales
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map(mainCat => {
-                  const subcategories = categories
-                    .filter(sub => sub.parentId === mainCat.id)
-                    .sort((a, b) => a.name.localeCompare(b.name));
-                  
-                  if (subcategories.length > 0) {
-                    // Si tiene subcategorías, mostrar como grupo
-                    return (
-                      <div key={mainCat.id}>
-                        <NavDropdown.Item 
-                          as={Link} 
+              <div style={{ 
+                display: 'flex', 
+                minWidth: '600px',
+                maxWidth: '700px'
+              }}>
+                {/* Columna izquierda - Categorías principales */}
+                <div style={{ 
+                  width: '240px', 
+                  borderRight: '1px solid #e0e0e0',
+                  backgroundColor: '#ffffff'
+                }}>
+                  {categories
+                    .filter(cat => !cat.parentId)
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .map(mainCat => {
+                      const hasSubcategories = categories.some(sub => sub.parentId === mainCat.id);
+                      const isHovered = hoveredCategory === mainCat.id;
+                      
+                      return (
+                        <NavDropdown.Item
+                          key={mainCat.id}
+                          as={Link}
                           to={`/category/${mainCat.value}`}
-                          className="fw-bold"
-                          style={{ fontSize: '0.95rem' }}
+                          onMouseEnter={() => setHoveredCategory(mainCat.id)}
+                          style={{
+                            fontWeight: '500',
+                            fontSize: '0.9rem',
+                            backgroundColor: isHovered ? '#f8f9fa' : 'transparent',
+                            borderLeft: isHovered ? '3px solid #007bff' : '3px solid transparent',
+                            padding: '10px 16px',
+                            color: '#000',
+                            transition: 'all 0.2s ease'
+                          }}
                         >
-                          {mainCat.name.toUpperCase()}
+                          {mainCat.name}
+                          {hasSubcategories && (
+                            <span style={{ 
+                              float: 'right', 
+                              fontSize: '0.9rem',
+                              color: '#000'
+                            }}>
+                              ›
+                            </span>
+                          )}
                         </NavDropdown.Item>
-                        {subcategories.map(subCat => {
-                          const subSubcategories = categories
-                            .filter(sub => sub.parentId === subCat.id)
-                            .sort((a, b) => a.name.localeCompare(b.name));
-                          
-                          return (
-                            <div key={subCat.value}>
-                              <NavDropdown.Item 
-                                as={Link} 
-                                to={`/category/${subCat.value}`}
-                                style={{ paddingLeft: '1.5rem' }}
-                              >
-                                {subCat.name}
-                              </NavDropdown.Item>
-                              
-                              {/* Sub-subcategorías (nivel 3) */}
-                              {subSubcategories.map(subSubCat => (
-                                <NavDropdown.Item 
-                                  key={subSubCat.value} 
-                                  as={Link} 
-                                  to={`/category/${subCat.value}`}
-                                  style={{ 
-                                    paddingLeft: '3rem',
-                                    fontSize: '0.85rem',
-                                    fontStyle: 'italic'
-                                  }}
-                                >
-                                  ⮡ {subSubCat.name}
-                                </NavDropdown.Item>
-                              ))}
-                            </div>
-                          );
-                        })}
-                        <NavDropdown.Divider />
+                      );
+                    })}
+                </div>
+
+                {/* Columna derecha - Subcategorías */}
+                <div style={{ 
+                  flex: 1, 
+                  padding: '16px 20px',
+                  minHeight: '250px',
+                  backgroundColor: '#ffffff'
+                }}>
+                  {hoveredCategory ? (
+                    <>
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        fontWeight: '600', 
+                        color: '#666', 
+                        marginBottom: '14px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
+                      }}>
+                        {categories.find(c => c.id === hoveredCategory)?.name}
                       </div>
-                    );
-                  } else {
-                    // Si no tiene subcategorías, mostrar directo
-                    return (
-                      <NavDropdown.Item key={mainCat.value} as={Link} to={`/category/${mainCat.value}`}>
-                        {mainCat.name}
-                      </NavDropdown.Item>
-                    );
-                  }
-                })}
+                      <div style={{ 
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '4px'
+                      }}>
+                        {categories
+                          .filter(sub => sub.parentId === hoveredCategory)
+                          .sort((a, b) => a.name.localeCompare(b.name))
+                          .map(subCat => (
+                            <NavDropdown.Item
+                              key={subCat.value}
+                              as={Link}
+                              to={`/category/${subCat.value}`}
+                              style={{
+                                fontSize: '0.9rem',
+                                padding: '8px 12px',
+                                borderRadius: '4px',
+                                color: '#000',
+                                transition: 'background-color 0.15s ease'
+                              }}
+                            >
+                              {subCat.name}
+                            </NavDropdown.Item>
+                          ))}
+                      </div>
+                    </>
+                  ) : (
+                    <div style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center',
+                      height: '100%',
+                      color: '#aaa',
+                      fontSize: '0.85rem',
+                      fontStyle: 'italic'
+                    }}>
+                      Selecciona una categoría
+                    </div>
+                  )}
+                </div>
+              </div>
             </HoverDropdown>
 
 
