@@ -12,6 +12,11 @@ export default function CategoriesManager() {
   const [modalType, setModalType] = useState(''); // 'category' o 'brand'
   const [newValue, setNewValue] = useState('');
   const [parentCategory, setParentCategory] = useState('');
+  
+  // Estados para modal de edición de subcategorías
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editingCategory, setEditingCategory] = useState(null);
+  const [subcategoryInput, setSubcategoryInput] = useState('');
 
   useEffect(() => {
     loadData();
@@ -121,6 +126,50 @@ export default function CategoriesManager() {
     setShowModal(true);
   };
 
+  const openEditModal = (category) => {
+    setEditingCategory(category);
+    setSubcategoryInput('');
+    setError('');
+    setShowEditModal(true);
+  };
+
+  const handleAddSubcategories = async () => {
+    if (!subcategoryInput.trim()) {
+      setError('Ingresa al menos una subcategoría');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      // Dividir por comas o saltos de línea
+      const subcategories = subcategoryInput
+        .split(/[,\n]/)
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+
+      // Agregar cada subcategoría
+      for (const subcat of subcategories) {
+        const data = {
+          name: subcat,
+          value: subcat.toLowerCase().replace(/\s+/g, '-'),
+          parentId: editingCategory.id
+        };
+        await addDoc(collection(db, 'categories'), data);
+      }
+
+      setSubcategoryInput('');
+      setShowEditModal(false);
+      await loadData();
+      alert(`✅ ${subcategories.length} subcategoría(s) agregada(s) exitosamente`);
+    } catch (err) {
+      setError('Error al agregar subcategorías: ' + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <h3 className="mb-4">Gestión de Categorías y Marcas</h3>
@@ -157,13 +206,24 @@ export default function CategoriesManager() {
             <tbody>
               {categories
                 .filter(cat => !cat.parentId) // Primero las principales
+                .sort((a, b) => a.name.localeCompare(b.name))
                 .map(cat => (
                   <>
-                    <tr key={cat.id} className="fw-bold">
+                    {/* Categoría Principal - Nivel 1 */}
+                    <tr key={cat.id} className="fw-bold" style={{ backgroundColor: '#f8f9fa' }}>
                       <td>📁 {cat.name}</td>
-                      <td>Principal</td>
+                      <td><span className="badge bg-primary">Nivel 1</span></td>
                       <td><code>{cat.value}</code></td>
                       <td>
+                        <Button
+                          variant="warning"
+                          size="sm"
+                          className="me-1"
+                          onClick={() => openEditModal(cat)}
+                          title="Agregar subcategorías (nivel 2)"
+                        >
+                          ✏️
+                        </Button>
                         <Button
                           variant="danger"
                           size="sm"
@@ -173,24 +233,58 @@ export default function CategoriesManager() {
                         </Button>
                       </td>
                     </tr>
-                    {/* Subcategorías */}
+                    
+                    {/* Subcategorías Nivel 2 */}
                     {categories
                       .filter(subcat => subcat.parentId === cat.id)
+                      .sort((a, b) => a.name.localeCompare(b.name))
                       .map(subcat => (
-                        <tr key={subcat.id}>
-                          <td style={{ paddingLeft: '2rem' }}>└─ {subcat.name}</td>
-                          <td>Subcategoría</td>
-                          <td><code>{subcat.value}</code></td>
-                          <td>
-                            <Button
-                              variant="danger"
-                              size="sm"
-                              onClick={() => handleDelete('category', subcat.id)}
-                            >
-                              🗑️
-                            </Button>
-                          </td>
-                        </tr>
+                        <>
+                          <tr key={subcat.id} style={{ backgroundColor: '#fff' }}>
+                            <td style={{ paddingLeft: '2rem' }}>└─ {subcat.name}</td>
+                            <td><span className="badge bg-info">Nivel 2</span></td>
+                            <td><code>{subcat.value}</code></td>
+                            <td>
+                              <Button
+                                variant="warning"
+                                size="sm"
+                                className="me-1"
+                                onClick={() => openEditModal(subcat)}
+                                title="Agregar subcategorías (nivel 3)"
+                              >
+                                ✏️
+                              </Button>
+                              <Button
+                                variant="danger"
+                                size="sm"
+                                onClick={() => handleDelete('category', subcat.id)}
+                              >
+                                🗑️
+                              </Button>
+                            </td>
+                          </tr>
+                          
+                          {/* Sub-subcategorías Nivel 3 */}
+                          {categories
+                            .filter(subsubcat => subsubcat.parentId === subcat.id)
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .map(subsubcat => (
+                              <tr key={subsubcat.id} style={{ backgroundColor: '#f8f9fa' }}>
+                                <td style={{ paddingLeft: '4rem' }}>└── {subsubcat.name}</td>
+                                <td><span className="badge bg-success">Nivel 3</span></td>
+                                <td><code>{subsubcat.value}</code></td>
+                                <td>
+                                  <Button
+                                    variant="danger"
+                                    size="sm"
+                                    onClick={() => handleDelete('category', subsubcat.id)}
+                                  >
+                                    🗑️
+                                  </Button>
+                                </td>
+                              </tr>
+                            ))}
+                        </>
                       ))}
                   </>
                 ))}
@@ -215,7 +309,7 @@ export default function CategoriesManager() {
               </tr>
             </thead>
             <tbody>
-              {brands.map(brand => (
+              {brands.slice().sort((a, b) => a.name.localeCompare(b.name)).map(brand => (
                 <tr key={brand.id}>
                   <td>{brand.name}</td>
                   <td><code>{brand.value}</code></td>
@@ -265,7 +359,9 @@ export default function CategoriesManager() {
                 onChange={(e) => setParentCategory(e.target.value)}
               >
                 <option value="">-- Categoría Principal --</option>
-                {categories.filter(cat => !cat.parentId).map(cat => (
+                {categories.filter(cat => !cat.parentId)
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map(cat => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
                 ))}
               </Form.Select>
@@ -281,6 +377,74 @@ export default function CategoriesManager() {
           </Button>
           <Button variant="primary" onClick={handleAdd} disabled={loading}>
             {loading ? 'Guardando...' : 'Agregar'}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para editar y agregar subcategorías múltiples */}
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            ✏️ Agregar Subcategorías {editingCategory && !editingCategory.parentId ? '(Nivel 2)' : '(Nivel 3)'} a: {editingCategory?.name}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {error && <Alert variant="danger">{error}</Alert>}
+          
+          <Alert variant="info">
+            <strong>💡 Tip:</strong> Puedes agregar múltiples subcategorías separándolas con comas o en líneas diferentes.
+            <br />
+            <small>
+              {editingCategory && !editingCategory.parentId 
+                ? 'Ejemplo: Amoladoras Angulares, Taladros, Lijadoras'
+                : 'Ejemplo: 4 1/2", 7", 9" o cada una en una línea nueva'
+              }
+            </small>
+          </Alert>
+
+          <Form.Group className="mb-3">
+            <Form.Label>
+              Subcategorías {editingCategory && !editingCategory.parentId ? '(Nivel 2)' : '(Nivel 3 - Filtros)'}
+            </Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={6}
+              value={subcategoryInput}
+              onChange={(e) => setSubcategoryInput(e.target.value)}
+              placeholder={editingCategory && !editingCategory.parentId 
+                ? 'Ej:\nAmoladoras Angulares\nTaladros Percutores\nLijadoras Orbitales\n\nO separado por comas'
+                : 'Ej:\n4 1/2"\n7"\n9"\n\nO separado por comas: 4 1/2", 7", 9"'
+              }
+              autoFocus
+            />
+            <Form.Text className="text-muted">
+              Los valores se generarán automáticamente (ej: &quot;Amoladoras Angulares&quot; → &quot;amoladoras-angulares&quot;)
+            </Form.Text>
+          </Form.Group>
+
+          {/* Mostrar subcategorías existentes */}
+          {categories.filter(c => c.parentId === editingCategory?.id).length > 0 && (
+            <div className="mb-3">
+              <h6 className="text-muted">Subcategorías existentes:</h6>
+              <div className="d-flex flex-wrap gap-2">
+                {categories
+                  .filter(c => c.parentId === editingCategory?.id)
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map(subcat => (
+                    <span key={subcat.id} className="badge bg-success">
+                      {subcat.name}
+                    </span>
+                  ))}
+              </div>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+            Cancelar
+          </Button>
+          <Button variant="success" onClick={handleAddSubcategories} disabled={loading}>
+            {loading ? 'Agregando...' : '➕ Agregar Subcategorías'}
           </Button>
         </Modal.Footer>
       </Modal>

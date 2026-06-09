@@ -13,6 +13,8 @@ export default function ItemListContainer() {
   const [categoryName, setCategoryName] = useState("");
   const [subcategories, setSubcategories] = useState([]);
   const [isMainCategory, setIsMainCategory] = useState(false);
+  const [filters, setFilters] = useState([]); // Filtros nivel 3
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
@@ -47,9 +49,20 @@ export default function ItemListContainer() {
               subcategoryValues.includes(product.category)
             );
           } else {
-            // Es una subcategoría, filtrar normalmente
+            // Es una subcategoría, verificar si tiene filtros (nivel 3)
             setIsMainCategory(false);
-            setSubcategories([]);
+            
+            // Buscar sub-subcategorías (filtros)
+            const categoryFilters = allCategories.filter(cat => cat.parentId === currentCategory.id);
+            
+            if (categoryFilters.length > 0) {
+              setFilters(categoryFilters);
+              setSubcategories([]);
+            } else {
+              setFilters([]);
+              setSubcategories([]);
+            }
+            
             data = await getProductByCategory(categParam);
           }
         } else {
@@ -70,9 +83,21 @@ export default function ItemListContainer() {
   if (loading) return <p>Cargando productos...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const filtered = products.filter((p) =>
-    brandParam ? p.brand === brandParam : true
-  );
+  const filtered = products.filter((p) => {
+    let match = true;
+    
+    // Filtrar por marca si existe
+    if (brandParam) {
+      match = match && p.brand === brandParam;
+    }
+    
+    // Filtrar por subcategoría nivel 3 si está seleccionada
+    if (selectedFilter) {
+      match = match && p.subcategory === selectedFilter;
+    }
+    
+    return match;
+  });
 
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
@@ -101,7 +126,7 @@ export default function ItemListContainer() {
         }}>
           <h5 style={{ marginBottom: '15px', color: '#495057' }}>Subcategorías:</h5>
           <div className="d-flex flex-wrap gap-2">
-            {subcategories.map(subcat => (
+            {subcategories.sort((a, b) => a.name.localeCompare(b.name)).map(subcat => (
               <Link
                 key={subcat.value}
                 to={`/category/${subcat.value}`}
@@ -114,6 +139,43 @@ export default function ItemListContainer() {
               >
                 {subcat.name}
               </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Panel de filtros si es subcategoría con filtros */}
+      {!isMainCategory && filters.length > 0 && (
+        <div className="filters-panel" style={{ 
+          marginBottom: '30px', 
+          padding: '20px', 
+          backgroundColor: '#fff3cd', 
+          borderRadius: '8px',
+          border: '1px solid #ffc107'
+        }}>
+          {/* <h5 style={{ marginBottom: '15px', color: '#856404' }}>
+            Filtrar por:
+          </h5> */}
+          <div className="d-flex flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedFilter("")}
+              className={`btn ${!selectedFilter ? 'btn-warning' : 'btn-outline-warning'}`}
+              style={{ fontSize: '0.9rem', padding: '8px 16px' }}
+            >
+              Todos
+            </button>
+            {filters.sort((a, b) => a.name.localeCompare(b.name)).map(filter => (
+              <button
+                key={filter.value}
+                onClick={() => setSelectedFilter(filter.value)}
+                className={`btn ${selectedFilter === filter.value ? 'btn-warning' : 'btn-outline-warning'}`}
+                style={{ 
+                  fontSize: '0.9rem',
+                  padding: '8px 16px'
+                }}
+              >
+                {filter.name}
+              </button>
             ))}
           </div>
         </div>

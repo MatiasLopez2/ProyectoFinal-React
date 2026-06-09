@@ -60,9 +60,9 @@ export default function NavBar({ cartCount }) {
   const handleSearch = (value) => {
     setSearchTerm(value);
     if (value.trim().length > 0) {
-      const subcats = categories.filter(cat => 
-        cat.parentId && cat.name.toLowerCase().includes(value.toLowerCase())
-      );
+      const subcats = categories
+        .filter(cat => cat.parentId && cat.name.toLowerCase().includes(value.toLowerCase()))
+        .sort((a, b) => a.name.localeCompare(b.name));
       setFilteredSubcategories(subcats);
       setShowSearchResults(true);
     } else {
@@ -85,8 +85,11 @@ export default function NavBar({ cartCount }) {
             <HoverDropdown title="Categorias">
               {categories
                 .filter(cat => !cat.parentId) // Solo categorías principales
+                .sort((a, b) => a.name.localeCompare(b.name))
                 .map(mainCat => {
-                  const subcategories = categories.filter(sub => sub.parentId === mainCat.id);
+                  const subcategories = categories
+                    .filter(sub => sub.parentId === mainCat.id)
+                    .sort((a, b) => a.name.localeCompare(b.name));
                   
                   if (subcategories.length > 0) {
                     // Si tiene subcategorías, mostrar como grupo
@@ -100,16 +103,39 @@ export default function NavBar({ cartCount }) {
                         >
                           {mainCat.name.toUpperCase()}
                         </NavDropdown.Item>
-                        {subcategories.map(subCat => (
-                          <NavDropdown.Item 
-                            key={subCat.value} 
-                            as={Link} 
-                            to={`/category/${subCat.value}`}
-                            style={{ paddingLeft: '1.5rem' }}
-                          >
-                            {subCat.name}
-                          </NavDropdown.Item>
-                        ))}
+                        {subcategories.map(subCat => {
+                          const subSubcategories = categories
+                            .filter(sub => sub.parentId === subCat.id)
+                            .sort((a, b) => a.name.localeCompare(b.name));
+                          
+                          return (
+                            <div key={subCat.value}>
+                              <NavDropdown.Item 
+                                as={Link} 
+                                to={`/category/${subCat.value}`}
+                                style={{ paddingLeft: '1.5rem' }}
+                              >
+                                {subCat.name}
+                              </NavDropdown.Item>
+                              
+                              {/* Sub-subcategorías (nivel 3) */}
+                              {subSubcategories.map(subSubCat => (
+                                <NavDropdown.Item 
+                                  key={subSubCat.value} 
+                                  as={Link} 
+                                  to={`/category/${subCat.value}`}
+                                  style={{ 
+                                    paddingLeft: '3rem',
+                                    fontSize: '0.85rem',
+                                    fontStyle: 'italic'
+                                  }}
+                                >
+                                  ⮡ {subSubCat.name}
+                                </NavDropdown.Item>
+                              ))}
+                            </div>
+                          );
+                        })}
                         <NavDropdown.Divider />
                       </div>
                     );
@@ -126,7 +152,7 @@ export default function NavBar({ cartCount }) {
 
 
             <HoverDropdown title="Marcas">
-              {brands.map(brand => (
+              {brands.sort((a, b) => a.name.localeCompare(b.name)).map(brand => (
                 <NavDropdown.Item key={brand.value} as={Link} to={`/brand/${brand.value}`}>
                   {brand.name.toUpperCase()}
                 </NavDropdown.Item>

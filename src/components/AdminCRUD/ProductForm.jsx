@@ -23,6 +23,7 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
     title: '',
     price: '',
     category: '',
+    subcategory: '', // Nivel 3
     brand: '',
     description: '',
     featured: false,
@@ -44,6 +45,7 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
           title: product.title || '',
           price: product.price || '',
           category: product.category || '',
+          subcategory: product.subcategory || '',
           brand: product.brand || '',
           description: product.description || '',
           featured: product.featured || false,
@@ -280,7 +282,15 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
               required
             >
               <option value="">Seleccionar...</option>
-              {categories.filter(cat => cat.parentId).map(cat => {
+              {categories.filter(cat => cat.parentId)
+                .sort((a, b) => {
+                  const parentA = categories.find(p => p.id === a.parentId);
+                  const parentB = categories.find(p => p.id === b.parentId);
+                  const parentCompare = (parentA?.name || '').localeCompare(parentB?.name || '');
+                  if (parentCompare !== 0) return parentCompare;
+                  return a.name.localeCompare(b.name);
+                })
+                .map(cat => {
                 const parent = categories.find(p => p.id === cat.parentId);
                 return (
                   <option key={cat.value} value={cat.value}>
@@ -297,6 +307,45 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
 
         <Col md={6}>
           <Form.Group className="mb-3">
+            <Form.Label>Filtro/Especificación {(() => {
+              const selectedCat = categories.find(c => c.value === formData.category);
+              const hasSubcategories = selectedCat && categories.some(c => c.parentId === selectedCat.id);
+              return hasSubcategories ? '*' : '(opcional)';
+            })()}</Form.Label>
+            <Form.Select
+              name="subcategory"
+              value={formData.subcategory}
+              onChange={handleChange}
+              required={(() => {
+                const selectedCat = categories.find(c => c.value === formData.category);
+                return selectedCat && categories.some(c => c.parentId === selectedCat.id);
+              })()}
+            >
+              <option value="">Seleccionar...</option>
+              {formData.category && (() => {
+                const selectedCat = categories.find(c => c.value === formData.category);
+                if (!selectedCat) return null;
+                
+                return categories
+                  .filter(c => c.parentId === selectedCat.id)
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map(subcat => (
+                    <option key={subcat.value} value={subcat.value}>
+                      {subcat.name}
+                    </option>
+                  ));
+              })()}
+            </Form.Select>
+            <Form.Text className="text-muted">
+              Ej: 4 1/2", 7", 9" para amoladoras, o tamaño/tipo específico
+            </Form.Text>
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col md={12}>
+          <Form.Group className="mb-3">
             <Form.Label>Marca *</Form.Label>
             <Form.Select
               name="brand"
@@ -305,7 +354,7 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
               required
             >
               <option value="">Seleccionar...</option>
-              {brands.map(brand => (
+              {brands.slice().sort((a, b) => a.name.localeCompare(b.name)).map(brand => (
                 <option key={brand.value} value={brand.value}>{brand.name}</option>
               ))}
             </Form.Select>
