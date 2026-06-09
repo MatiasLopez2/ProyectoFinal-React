@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -9,6 +9,8 @@ import CartWidget from "../CartWidget/CartWidget";
 import logo from "/img/logo.png";
 import "./NavBar.css";
 import { Link } from "react-router";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../data/firebase";
 
 
 function HoverDropdown({ title, children }) {
@@ -28,6 +30,24 @@ function HoverDropdown({ title, children }) {
 }
 
 export default function NavBar({ cartCount }) {
+  const [categories, setCategories] = useState([]);
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    loadCategoriesAndBrands();
+  }, []);
+
+  const loadCategoriesAndBrands = async () => {
+    try {
+      const categoriesSnap = await getDocs(collection(db, 'categories'));
+      const brandsSnap = await getDocs(collection(db, 'brands'));
+      
+      setCategories(categoriesSnap.docs.map(doc => doc.data()));
+      setBrands(brandsSnap.docs.map(doc => doc.data()));
+    } catch (error) {
+      console.error('Error loading categories/brands:', error);
+    }
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -41,29 +61,20 @@ export default function NavBar({ cartCount }) {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
 
             <HoverDropdown title="Categorias">
-            <NavDropdown.Item as={Link} to="/category/amoladoras">
-              Amoladoras
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/category/sierras">
-              Sierras Circular
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/category/lijadoras">
-              Lijadoras
-            </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/category/caladoras">
-              Caladoras
-            </NavDropdown.Item>
-          </HoverDropdown>
+              {categories.map(cat => (
+                <NavDropdown.Item key={cat.value} as={Link} to={`/category/${cat.value}`}>
+                  {cat.name.toUpperCase()}
+                </NavDropdown.Item>
+              ))}
+            </HoverDropdown>
 
 
             <HoverDropdown title="Marcas">
-              <NavDropdown.Item as={Link} to="/brand/stanley">STANLEY</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/skil">SKIL</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/bosch">BOSCH</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/milwaukee">MILWAUKEE</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/dewalt">DEWALT</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/makita">MAKITA</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/brand/black+decker">BLACK+DECKER</NavDropdown.Item>
+              {brands.map(brand => (
+                <NavDropdown.Item key={brand.value} as={Link} to={`/brand/${brand.value}`}>
+                  {brand.name.toUpperCase()}
+                </NavDropdown.Item>
+              ))}
             </HoverDropdown>
           </Nav>
 

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { collection, getFirestore, getDoc, getDocs, query, where, addDoc, doc, setDoc, deleteDoc, writeBatch } from "firebase/firestore";
-import products from '../../public/data/products.json';
+import { collection, getFirestore, getDoc, getDocs, query, where, addDoc, doc, setDoc, deleteDoc, writeBatch, updateDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -18,7 +18,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db=getFirestore(app);
+const db = getFirestore(app);
+
+export { db };
 
 
 export async function getProducts(){

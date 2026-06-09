@@ -19,6 +19,7 @@ import Terms from "./components/Policy/Terms"
 import HowToBuy from "./components/Policy/HowToBuy"
 import Contact from "./components/Contact/Contact"
 import Admin from "./components/Admin/Admin"
+import AdminCRUD from "./components/AdminCRUD/AdminCRUD"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/how-to-buy" element={<HowToBuy></HowToBuy>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin22" element={<AdminCRUD />} />
         </Routes>
         <Footer />
         <ToastContainer

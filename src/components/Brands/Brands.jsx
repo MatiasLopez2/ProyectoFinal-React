@@ -22,6 +22,7 @@ function Brands(){
               <Link to="/brand/makita"><img src={makita} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
               <Link to="/brand/milwaukee"><img src={milwaukee} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
               <Link to="/brand/skil"><img src={skil} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
+              <Link to="/brand/skil2"><img src={skil} style={{ width: '150px' }}  className="h-12 object-contain" loading="lazy" /></Link>
             </picture>
        
       </div>
