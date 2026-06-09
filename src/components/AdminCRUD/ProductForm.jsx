@@ -67,25 +67,13 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
       const categoriesSnap = await getDocs(collection(db, 'categories'));
       const brandsSnap = await getDocs(collection(db, 'brands'));
       
-      setCategories(categoriesSnap.docs.map(doc => doc.data()));
+      const allCategories = categoriesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setCategories(allCategories);
       setBrands(brandsSnap.docs.map(doc => doc.data()));
     } catch (error) {
       console.error('Error loading categories/brands:', error);
-      // Valores por defecto si no existen en Firestore
-      setCategories([
-        { name: 'Caladoras', value: 'caladoras' },
-        { name: 'Amoladoras', value: 'amoladoras' },
-        { name: 'Lijadoras', value: 'lijadoras' },
-        { name: 'Sierras', value: 'sierras' }
-      ]);
-      setBrands([
-        { name: 'Bosch', value: 'bosch' },
-        { name: 'DeWalt', value: 'dewalt' },
-        { name: 'Makita', value: 'makita' },
-        { name: 'Stanley', value: 'stanley' },
-        { name: 'Skil', value: 'skil' },
-        { name: 'Black+Decker', value: 'black+decker' }
-      ]);
+      setCategories([]);
+      setBrands([]);
     }
   };
 
@@ -292,10 +280,18 @@ export default function ProductForm({ product, onSuccess, onCancel }) {
               required
             >
               <option value="">Seleccionar...</option>
-              {categories.map(cat => (
-                <option key={cat.value} value={cat.value}>{cat.name}</option>
-              ))}
+              {categories.filter(cat => cat.parentId).map(cat => {
+                const parent = categories.find(p => p.id === cat.parentId);
+                return (
+                  <option key={cat.value} value={cat.value}>
+                    {parent ? `${parent.name} > ` : ''}{cat.name}
+                  </option>
+                );
+              })}
             </Form.Select>
+            <Form.Text className="text-muted">
+              Selecciona la subcategoría del producto
+            </Form.Text>
           </Form.Group>
         </Col>
 

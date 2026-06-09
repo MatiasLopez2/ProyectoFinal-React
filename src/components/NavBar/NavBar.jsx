@@ -32,9 +32,17 @@ function HoverDropdown({ title, children }) {
 export default function NavBar({ cartCount }) {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredSubcategories, setFilteredSubcategories] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   useEffect(() => {
     loadCategoriesAndBrands();
+    
+    // Cerrar búsqueda al hacer clic fuera
+    const handleClickOutside = () => setShowSearchResults(false);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   const loadCategoriesAndBrands = async () => {
@@ -42,10 +50,24 @@ export default function NavBar({ cartCount }) {
       const categoriesSnap = await getDocs(collection(db, 'categories'));
       const brandsSnap = await getDocs(collection(db, 'brands'));
       
-      setCategories(categoriesSnap.docs.map(doc => doc.data()));
+      setCategories(categoriesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       setBrands(brandsSnap.docs.map(doc => doc.data()));
     } catch (error) {
       console.error('Error loading categories/brands:', error);
+    }
+  };
+
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    if (value.trim().length > 0) {
+      const subcats = categories.filter(cat => 
+        cat.parentId && cat.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredSubcategories(subcats);
+      setShowSearchResults(true);
+    } else {
+      setFilteredSubcategories([]);
+      setShowSearchResults(false);
     }
   };
 
@@ -61,11 +83,45 @@ export default function NavBar({ cartCount }) {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
 
             <HoverDropdown title="Categorias">
-              {categories.map(cat => (
-                <NavDropdown.Item key={cat.value} as={Link} to={`/category/${cat.value}`}>
-                  {cat.name.toUpperCase()}
-                </NavDropdown.Item>
-              ))}
+              {categories
+                .filter(cat => !cat.parentId) // Solo categorías principales
+                .map(mainCat => {
+                  const subcategories = categories.filter(sub => sub.parentId === mainCat.id);
+                  
+                  if (subcategories.length > 0) {
+                    // Si tiene subcategorías, mostrar como grupo
+                    return (
+                      <div key={mainCat.id}>
+                        <NavDropdown.Item 
+                          as={Link} 
+                          to={`/category/${mainCat.value}`}
+                          className="fw-bold"
+                          style={{ fontSize: '0.95rem' }}
+                        >
+                          {mainCat.name.toUpperCase()}
+                        </NavDropdown.Item>
+                        {subcategories.map(subCat => (
+                          <NavDropdown.Item 
+                            key={subCat.value} 
+                            as={Link} 
+                            to={`/category/${subCat.value}`}
+                            style={{ paddingLeft: '1.5rem' }}
+                          >
+                            {subCat.name}
+                          </NavDropdown.Item>
+                        ))}
+                        <NavDropdown.Divider />
+                      </div>
+                    );
+                  } else {
+                    // Si no tiene subcategorías, mostrar directo
+                    return (
+                      <NavDropdown.Item key={mainCat.value} as={Link} to={`/category/${mainCat.value}`}>
+                        {mainCat.name}
+                      </NavDropdown.Item>
+                    );
+                  }
+                })}
             </HoverDropdown>
 
 
@@ -78,7 +134,53 @@ export default function NavBar({ cartCount }) {
             </HoverDropdown>
           </Nav>
 
-          
+          {/* Buscador de subcategorías */}
+          <Form className="d-flex position-relative me-3" onClick={(e) => e.stopPropagation()}>
+            <Form.Control
+              type="search"
+              placeholder="Buscar subcategorías..."
+              className="me-2"
+              aria-label="Search"
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
+              onFocus={() => searchTerm && setShowSearchResults(true)}
+              style={{ minWidth: '200px' }}
+            />
+            {showSearchResults && filteredSubcategories.length > 0 && (
+              <div 
+                className="position-absolute bg-white border rounded shadow-sm"
+                style={{ 
+                  top: '100%', 
+                  left: 0, 
+                  right: 0, 
+                  maxHeight: '300px', 
+                  overflowY: 'auto',
+                  zIndex: 1000,
+                  marginTop: '5px'
+                }}
+              >
+                {filteredSubcategories.map(subcat => {
+                  const parent = categories.find(c => c.id === subcat.parentId);
+                  return (
+                    <Link
+                      key={subcat.value}
+                      to={`/category/${subcat.value}`}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setSearchTerm('');
+                        setShowSearchResults(false);
+                      }}
+                      style={{ padding: '8px 12px' }}
+                    >
+                      <small className="text-muted">{parent?.name}</small>
+                      <br />
+                      <strong>{subcat.name}</strong>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </Form>
           
           {/* Carrito */}
           <CartWidget count={cartCount}/>

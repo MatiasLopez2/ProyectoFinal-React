@@ -53,6 +53,17 @@ export async function getProductByCategory(categParam){
   return data;
 }
 
+export async function getCategories() {
+  const querySnapshot = await getDocs(collection(db, 'categories'));
+  const documents = querySnapshot.docs;
+  
+  const data = documents.map(doc => {
+    return { id: doc.id, ...doc.data() }
+  });
+
+  return data;
+}
+
 
 
 export async function createBuyOrder(orderData){

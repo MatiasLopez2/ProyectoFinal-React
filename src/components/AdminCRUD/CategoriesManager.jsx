@@ -11,6 +11,7 @@ export default function CategoriesManager() {
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState(''); // 'category' o 'brand'
   const [newValue, setNewValue] = useState('');
+  const [parentCategory, setParentCategory] = useState('');
 
   useEffect(() => {
     loadData();
@@ -77,12 +78,20 @@ export default function CategoriesManager() {
 
     try {
       const collectionName = modalType === 'category' ? 'categories' : 'brands';
-      await addDoc(collection(db, collectionName), {
+      const data = {
         name: newValue.trim(),
         value: newValue.toLowerCase().replace(/\s+/g, '-')
-      });
+      };
+
+      // Si es categoría y tiene padre, agregar parentId
+      if (modalType === 'category') {
+        data.parentId = parentCategory || null;
+      }
+
+      await addDoc(collection(db, collectionName), data);
 
       setNewValue('');
+      setParentCategory('');
       setShowModal(false);
       await loadData();
     } catch (err) {
@@ -107,6 +116,7 @@ export default function CategoriesManager() {
   const openModal = (type) => {
     setModalType(type);
     setNewValue('');
+    setParentCategory('');
     setError('');
     setShowModal(true);
   };
@@ -139,26 +149,51 @@ export default function CategoriesManager() {
             <thead>
               <tr>
                 <th>Nombre</th>
+                <th>Tipo</th>
                 <th>Valor</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {categories.map(cat => (
-                <tr key={cat.id}>
-                  <td>{cat.name}</td>
-                  <td><code>{cat.value}</code></td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleDelete('category', cat.id)}
-                    >
-                      🗑️
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {categories
+                .filter(cat => !cat.parentId) // Primero las principales
+                .map(cat => (
+                  <>
+                    <tr key={cat.id} className="fw-bold">
+                      <td>📁 {cat.name}</td>
+                      <td>Principal</td>
+                      <td><code>{cat.value}</code></td>
+                      <td>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => handleDelete('category', cat.id)}
+                        >
+                          🗑️
+                        </Button>
+                      </td>
+                    </tr>
+                    {/* Subcategorías */}
+                    {categories
+                      .filter(subcat => subcat.parentId === cat.id)
+                      .map(subcat => (
+                        <tr key={subcat.id}>
+                          <td style={{ paddingLeft: '2rem' }}>└─ {subcat.name}</td>
+                          <td>Subcategoría</td>
+                          <td><code>{subcat.value}</code></td>
+                          <td>
+                            <Button
+                              variant="danger"
+                              size="sm"
+                              onClick={() => handleDelete('category', subcat.id)}
+                            >
+                              🗑️
+                            </Button>
+                          </td>
+                        </tr>
+                      ))}
+                  </>
+                ))}
             </tbody>
           </Table>
         </div>
@@ -208,19 +243,37 @@ export default function CategoriesManager() {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form.Group>
+          <Form.Group className="mb-3">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
               value={newValue}
               onChange={(e) => setNewValue(e.target.value)}
-              placeholder={`Ej: ${modalType === 'category' ? 'Caladoras' : 'Bosch'}`}
+              placeholder={`Ej: ${modalType === 'category' ? 'Herramientas Eléctricas' : 'Bosch'}`}
               autoFocus
             />
             <Form.Text className="text-muted">
               El valor se generará automáticamente (ej: {newValue.toLowerCase().replace(/\s+/g, '-') || 'ejemplo'})
             </Form.Text>
           </Form.Group>
+
+          {modalType === 'category' && (
+            <Form.Group>
+              <Form.Label>Categoría Padre (opcional)</Form.Label>
+              <Form.Select
+                value={parentCategory}
+                onChange={(e) => setParentCategory(e.target.value)}
+              >
+                <option value="">-- Categoría Principal --</option>
+                {categories.filter(cat => !cat.parentId).map(cat => (
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                ))}
+              </Form.Select>
+              <Form.Text className="text-muted">
+                Si no seleccionas nada, será una categoría principal
+              </Form.Text>
+            </Form.Group>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowModal(false)}>
