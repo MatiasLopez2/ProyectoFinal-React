@@ -146,7 +146,7 @@ export default function ItemListContainer() {
                   minWidth: '20px'
                 }}
               >
-                {isExpanded ? '▼' : '►'}
+                {isExpanded ? '🢁' : '🢃'}
               </button>
             )}
             
