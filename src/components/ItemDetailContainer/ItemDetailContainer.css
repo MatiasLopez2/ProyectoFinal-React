@@ -14,6 +14,37 @@
   border-radius: 8px;
 }
 
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .product-gallery .main-image img {
+    height: 300px !important;
+  }
+  
+  .product-info {
+    padding: 15px 10px;
+  }
+  
+  .price-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .mx-auto.col-md-10 {
+    margin: 15px 10px;
+    padding: 15px;
+  }
+  
+  .product-gallery .thumbs {
+    gap: 5px;
+  }
+  
+  .product-gallery .thumbs img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 .product-gallery .thumbs {
   display: flex;
   gap: 10px;

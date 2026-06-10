@@ -15,12 +15,21 @@ export default function ItemListContainer() {
   const [allCategories, setAllCategories] = useState([]); // Todas las categorías
   const [expandedCategories, setExpandedCategories] = useState({}); // Estado de expansión
   const [selectedFilter, setSelectedFilter] = useState(null); // Filtro nivel 3 seleccionado
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
+  // Detectar cambios de tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     setLoading(true);
+    setSelectedFilter(null); // Resetear filtro al cambiar de categoría
 
     const fetchData = async () => {
       try {
@@ -181,9 +190,6 @@ export default function ItemListContainer() {
                 }
               }}
             >
-              {/* {level === 0 && '📁 '} */}
-              {/* {level === 1 && '└─ '}
-              {level === 2 && '└── '} */}
               {category.name}
             </Link>
           </div>
@@ -223,19 +229,24 @@ export default function ItemListContainer() {
         </h2>
 
       {/* Layout con sidebar y contenido principal */}
-      <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+      <div style={{ 
+        display: 'flex', 
+        gap: '20px', 
+        alignItems: 'flex-start',
+        flexDirection: isMobile ? 'column' : 'row'
+      }}>
         
         {/* Sidebar de navegación - Siempre visible */}
         <aside style={{
-          width: '280px',
-          minWidth: '280px',
+          width: isMobile ? '100%' : '280px',
+          minWidth: isMobile ? 'auto' : '280px',
           backgroundColor: '#fff',
           borderRadius: '12px',
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
           padding: '0',
           overflow: 'hidden',
           alignSelf: 'flex-start',
-          maxHeight: '80vh',
+          maxHeight: isMobile ? '400px' : '80vh',
           overflowY: 'auto'
         }}>
           {/* Header del sidebar */}

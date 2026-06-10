@@ -86,13 +86,15 @@ export default function NavBar({ cartCount }) {
             <HoverDropdown title="Categorias">
               <div style={{ 
                 display: 'flex', 
-                minWidth: '600px',
-                maxWidth: '700px'
+                minWidth: window.innerWidth <= 768 ? '100%' : '600px',
+                maxWidth: window.innerWidth <= 768 ? '100%' : '700px',
+                flexDirection: window.innerWidth <= 768 ? 'column' : 'row'
               }}>
                 {/* Columna izquierda - Categorías principales */}
                 <div style={{ 
-                  width: '240px', 
-                  borderRight: '1px solid #e0e0e0',
+                  width: window.innerWidth <= 768 ? '100%' : '240px', 
+                  borderRight: window.innerWidth <= 768 ? 'none' : '1px solid #e0e0e0',
+                  borderBottom: window.innerWidth <= 768 ? '1px solid #e0e0e0' : 'none',
                   backgroundColor: '#ffffff'
                 }}>
                   {categories

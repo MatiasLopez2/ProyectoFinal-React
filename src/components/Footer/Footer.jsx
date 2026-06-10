@@ -46,7 +46,7 @@ function Footer() {
             </li>
             <li>
               <MessageCircle size={18} />{" "}
-              <a href="https://wa.me/542235110170" target="_blank">2235110170</a>
+              <a href="https://wa.me/542233127686" target="_blank">2233127686</a>
             </li>
             
             <li>
@@ -56,7 +56,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <MapPin size={18} /> Av. Juan B. Justo 2222, Mar del Plata, Buenos Aires
+              <MapPin size={18} /> Av. Juan B. Justo 2801, Mar del Plata, Buenos Aires
             </li>
           </ul>
         </div>

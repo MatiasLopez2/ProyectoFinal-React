@@ -93,7 +93,7 @@ export default function ItemDetailContainer() {
         }}
         onClick={() => {
           const message = `Hola, estoy interesado en: ${product.title} - $${product.price}`;
-          const phoneNumber = '5492235425880'; 
+          const phoneNumber = '5492233127686'; 
           const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
           window.open(url, '_blank');
         }}

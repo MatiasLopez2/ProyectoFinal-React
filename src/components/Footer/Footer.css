@@ -52,3 +52,20 @@
 .social-icons a:hover {
   color: #fff;
 }
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1rem;
+  }
+  
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+}

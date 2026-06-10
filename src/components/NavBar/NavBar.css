@@ -48,6 +48,26 @@ button.buttonShop:hover {
   height: 2px;
   background: #007bff !important;
   transform: scaleX(0);
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  input.me-2.form-control {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  img.logoHome {
+    width: 70px;
+  }
+  
+  a.navbar-brand {
+    margin-left: 10px;
+  }
+  
+  .navbar-nav {
+    gap: 1rem;
+  }
+}
   transition: transform 0.3s ease;
   transform-origin: right;
 }
