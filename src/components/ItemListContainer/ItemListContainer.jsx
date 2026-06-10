@@ -16,6 +16,7 @@ export default function ItemListContainer() {
   const [expandedCategories, setExpandedCategories] = useState({}); // Estado de expansión
   const [selectedFilter, setSelectedFilter] = useState(null); // Filtro nivel 3 seleccionado
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false); // Estado del sidebar en mobile
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
@@ -30,6 +31,9 @@ export default function ItemListContainer() {
   useEffect(() => {
     setLoading(true);
     setSelectedFilter(null); // Resetear filtro al cambiar de categoría
+    if (isMobile) {
+      setSidebarCollapsed(true); // Contraer sidebar en mobile al cambiar categoría
+    }
 
     const fetchData = async () => {
       try {
@@ -236,7 +240,7 @@ export default function ItemListContainer() {
         flexDirection: isMobile ? 'column' : 'row'
       }}>
         
-        {/* Sidebar de navegación - Siempre visible */}
+        {/* Sidebar de navegación - Colapsable en mobile */}
         <aside style={{
           width: isMobile ? '100%' : '280px',
           minWidth: isMobile ? 'auto' : '280px',
@@ -246,18 +250,25 @@ export default function ItemListContainer() {
           padding: '0',
           overflow: 'hidden',
           alignSelf: 'flex-start',
-          maxHeight: isMobile ? '400px' : '80vh',
-          overflowY: 'auto'
+          maxHeight: isMobile ? (sidebarCollapsed ? 'auto' : '400px') : '80vh',
+          overflowY: isMobile && !sidebarCollapsed ? 'auto' : 'visible'
         }}>
           {/* Header del sidebar */}
-          <div style={{
-            padding: '20px',
-            backgroundColor: '#f8f9fa',
-            borderBottom: '2px solid #dee2e6',
-            position: 'sticky',
-            top: 0,
-            zIndex: 1
-          }}>
+          <div 
+            onClick={() => isMobile && setSidebarCollapsed(!sidebarCollapsed)}
+            style={{
+              padding: '20px',
+              backgroundColor: '#f8f9fa',
+              borderBottom: '2px solid #dee2e6',
+              position: 'sticky',
+              top: 0,
+              zIndex: 1,
+              cursor: isMobile ? 'pointer' : 'default',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
             <h5 style={{ 
               margin: 0, 
               fontSize: '1.1rem',
@@ -266,12 +277,23 @@ export default function ItemListContainer() {
             }}>
               Categorías
             </h5>
+            {isMobile && (
+              <span style={{ 
+                fontSize: '1.2rem',
+                fontWeight: 'bold',
+                color: '#495057'
+              }}>
+                {sidebarCollapsed ? '▼' : '▲'}
+              </span>
+            )}
           </div>
 
-          {/* Árbol de categorías */}
-          <div style={{ padding: '16px' }}>
-            {renderCategoryTree()}
-          </div>
+          {/* Árbol de categorías - Oculto si está colapsado en mobile */}
+          {(!isMobile || !sidebarCollapsed) && (
+            <div style={{ padding: '16px' }}>
+              {renderCategoryTree()}
+            </div>
+          )}
         </aside>
 
         {/* Contenido principal */}
