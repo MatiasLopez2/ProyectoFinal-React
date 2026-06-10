@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Container, Row, Col, Card, Button, Form, Carousel } from "react-bootstrap";
 import { getProductById } from "../../data/firebase"; 
 import ItemCount from "../ItemCount/ItemCount";
@@ -34,7 +35,16 @@ export default function ItemDetailContainer() {
   }
 
   return (
-<Container className="mt-4 product-page">
+    <>
+      <Helmet>
+        <title>{product.title} - La Casa de la Tuerca</title>
+        <meta name="description" content={`${product.title} - $${product.price}. ${product.description?.substring(0, 150)}...`} />
+        <meta property="og:title" content={`${product.title} - La Casa de la Tuerca`} />
+        <meta property="og:description" content={product.description?.substring(0, 150)} />
+        <meta property="og:image" content={product.img?.[0]} />
+      </Helmet>
+
+      <Container className="mt-4 product-page">
   <Row>
     {/* Galería de imágenes */}
     <Col md={6} className="product-gallery">
@@ -110,6 +120,6 @@ export default function ItemDetailContainer() {
     </Col>
   </Row>
 </Container>
-
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { getProducts, getProductByCategory, getCategories } from "../../data/firebase";
 import Pagination from "../Pagination/Pagination"; 
 import ItemList from "../ItemList/ItemList"; 
@@ -207,11 +208,19 @@ export default function ItemListContainer() {
     : [];
 
   return (
-    <div className="category">
-      {/* Título principal */}
-      <h2 style={{ marginBottom: "16px", textTransform: "capitalize" }}>
-        {pageTitle}
-      </h2>
+    <>
+      <Helmet>
+        <title>{pageTitle} - La Casa de la Tuerca</title>
+        <meta name="description" content={`${pageTitle} - Herramientas y ferretería. Encontrá las mejores herramientas eléctricas y manuales al mejor precio.`} />
+        <meta property="og:title" content={`${pageTitle} - La Casa de la Tuerca`} />
+        <meta property="og:description" content={`${pageTitle} - Herramientas y ferretería`} />
+      </Helmet>
+
+      <div className="category">
+        {/* Título principal */}
+        <h2 style={{ marginBottom: "16px", textTransform: "capitalize" }}>
+          {pageTitle}
+        </h2>
 
       {/* Layout con sidebar y contenido principal */}
       <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
@@ -366,5 +375,6 @@ export default function ItemListContainer() {
         </div>
       </div>
     </div>
+    </>
   );
 }
