@@ -254,7 +254,7 @@ export default function NavBar({ cartCount }) {
           </Form>
           
           {/* Carrito */}
-          <CartWidget count={cartCount}/>
+          {/* <CartWidget count={cartCount}/> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
