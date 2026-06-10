@@ -27,7 +27,7 @@ const servicesData = [
     icon: Home,
     title: "Horario Sucursal",
     description:
-      "Lun a Vie 9 a 13 - 14 a 17.30. Sábados de 9 a 13hs",
+      "Lunes a Viernes de 8 a 17 Sábados de 8 a 12.30hs",
   },
 ];
 

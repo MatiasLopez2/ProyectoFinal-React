@@ -2,16 +2,12 @@ img.d-block.w-100.imgCarousel {
     max-height: 1000px;
 }
 
-
 .imgCarousel {
-  aspect-ratio: 16 / 9; /* o la proporción de tus banners */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   width: 100%;
   background-color: #000;
 }
-
-
-
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
     background-color: #000000e0;
@@ -20,12 +16,23 @@ img.d-block.w-100.imgCarousel {
 }
 
 .carousel-caption {
-    BACKGROUND-COLOR: #d1d1d1ba;
-    COLOR: BLACK;
-    FONT-SIZE: 20PX;
-    FONT-WEIGHT: 700;
-    BORDER-RADIUS: 20PX;
-    PADDING: 20PX;
+    background-color: #d1d1d1ba;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 20px;
+    bottom: 20px;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.carousel-caption p {
+    font-size: 1.1rem;
+    margin: 0;
 }
 
 .carousel-indicators [data-bs-target] {
@@ -44,6 +51,54 @@ img.d-block.w-100.imgCarousel {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     opacity: .5;
-    transition: opacity .6s 
-ease;
+    transition: opacity .6s ease;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    img.d-block.w-100.imgCarousel {
+        max-height: 250px;
+        object-fit: cover;
+    }
+    
+    .imgCarousel {
+        aspect-ratio: 16 / 10;
+    }
+    
+    .carousel-caption {
+        bottom: 10px;
+        left: 5%;
+        right: 5%;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.7rem;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .carousel-control-next-icon, 
+    .carousel-control-prev-icon {
+        padding: 16px;
+        border-radius: 20px;
+    }
+    
+    .carousel-indicators {
+        margin-bottom: 5px;
+    }
+    
+    .carousel-indicators [data-bs-target] {
+        width: 20px;
+        height: 2px;
+    }
 }
