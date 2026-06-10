@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -17,21 +18,75 @@ const cardsData = [
 ];
 
 function Grid() {
+  const [expanded, setExpanded] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Detectar cambios de tamaño
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const toggleExpanded = (idx) => {
+    setExpanded(prev => ({
+      ...prev,
+      [idx]: !prev[idx]
+    }));
+  };
+
+  const truncateText = (text, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
+  };
+
   return (
     <Row xs={1} md={2} className="g-4">
-      {cardsData.map((card, idx) => (
-        <Col key={idx}>
-          <Link to={card.link} style={{ textDecoration: "none", color: "inherit" }}>
+      {cardsData.map((card, idx) => {
+        const isExpanded = expanded[idx];
+        const shouldTruncate = isMobile && card.text.length > 150;
+        const displayText = shouldTruncate && !isExpanded 
+          ? truncateText(card.text) 
+          : card.text;
+
+        return (
+          <Col key={idx}>
             <Card style={{ height: "100%" }}>
               <Card.Img variant="top" src={card.img} />
               <Card.Body>
                 <Card.Title>{card.title}</Card.Title>
-                <Card.Text>{card.text}</Card.Text>
+                <Card.Text>
+                  {displayText}
+                  {shouldTruncate && (
+                    <span 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleExpanded(idx);
+                      }}
+                      style={{ 
+                        color: '#007bff', 
+                        cursor: 'pointer',
+                        fontWeight: '600',
+                        marginLeft: '5px',
+                        display: 'inline-block'
+                      }}
+                    >
+                      {isExpanded ? 'Leer menos' : 'Leer más'}
+                    </span>
+                  )}
+                </Card.Text>
+                <Link 
+                  to={card.link} 
+                  className="btn btn-primary w-100"
+                  style={{ marginTop: 'auto' }}
+                >
+                  Ver productos
+                </Link>
               </Card.Body>
             </Card>
-          </Link>
-        </Col>
-      ))}
+          </Col>
+        );
+      })}
     </Row>
   );
 }

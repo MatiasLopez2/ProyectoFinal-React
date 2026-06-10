@@ -1,5 +1,30 @@
 .card-img-top {
-  aspect-ratio: 16 / 9; /* o 4 / 3 según tus imágenes */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  flex: 1;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .card-img-top {
+    max-height: 200px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
 }
