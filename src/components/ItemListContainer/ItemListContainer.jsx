@@ -332,10 +332,10 @@ export default function ItemListContainer() {
                   }}
                   style={{
                     padding: '3px 10px',
-                    border: selectedFilter === null ? '2px solid #007bff' : '1px solid #dee2e6',
+                    border: selectedFilter === null ? '2px solid #f2ca30' : '1px solid #dee2e6',
                     borderRadius: '14px',
-                    backgroundColor: selectedFilter === null ? '#007bff' : '#fff',
-                    color: selectedFilter === null ? '#fff' : '#495057',
+                    backgroundColor: selectedFilter === null ? '#f2ca30' : '#fff',
+                    color: selectedFilter === null ? '#000' : '#495057',
                     fontSize: '0.75rem',
                     fontWeight: '500',
                     cursor: 'pointer',
@@ -344,8 +344,8 @@ export default function ItemListContainer() {
                   }}
                   onMouseEnter={(e) => {
                     if (selectedFilter !== null) {
-                      e.target.style.borderColor = '#007bff';
-                      e.target.style.color = '#007bff';
+                      e.target.style.borderColor = '#f2ca30';
+                      e.target.style.color = '#f2ca30';
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -368,10 +368,10 @@ export default function ItemListContainer() {
                     }}
                     style={{
                       padding: '3px 10px',
-                      border: selectedFilter === filter.value ? '2px solid #007bff' : '1px solid #dee2e6',
+                      border: selectedFilter === filter.value ? '2px solid #f2ca30' : '1px solid #dee2e6',
                       borderRadius: '14px',
-                      backgroundColor: selectedFilter === filter.value ? '#007bff' : '#fff',
-                      color: selectedFilter === filter.value ? '#fff' : '#495057',
+                      backgroundColor: selectedFilter === filter.value ? '#f2ca30' : '#fff',
+                      color: selectedFilter === filter.value ? '#000' : '#495057',
                       fontSize: '0.75rem',
                       fontWeight: '500',
                       cursor: 'pointer',
@@ -380,8 +380,8 @@ export default function ItemListContainer() {
                     }}
                     onMouseEnter={(e) => {
                       if (selectedFilter !== filter.value) {
-                        e.target.style.borderColor = '#007bff';
-                        e.target.style.color = '#007bff';
+                        e.target.style.borderColor = '#f2ca30';
+                        e.target.style.color = '#f2ca30';
                       }
                     }}
                     onMouseLeave={(e) => {

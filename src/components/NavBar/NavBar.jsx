@@ -73,7 +73,7 @@ export default function NavBar({ cartCount }) {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="navbar-dark" style={{ backgroundColor: '#222' }}>
       <Container fluid>
         <Navbar.Brand as={Link} to="/">
           <img className="logoHome" src={logo} alt="Logo" />
@@ -114,7 +114,7 @@ export default function NavBar({ cartCount }) {
                             fontWeight: '500',
                             fontSize: '0.9rem',
                             backgroundColor: isHovered ? '#f8f9fa' : 'transparent',
-                            borderLeft: isHovered ? '3px solid #007bff' : '3px solid transparent',
+                            borderLeft: isHovered ? '3px solid #f2ca30' : '3px solid transparent',
                             padding: '10px 16px',
                             color: '#000',
                             transition: 'all 0.2s ease'

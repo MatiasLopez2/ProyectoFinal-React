@@ -38,7 +38,7 @@ const ContactModern = () => {
   return (
     <Container className="my-5">
       <Card style={{ borderRadius: "12px", boxShadow: "0 5px 20px rgba(0,0,0,0.1)" }}>
-        <Card.Header className="bg-primary text-white" style={{ borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }}>
+        <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }}>
           <h2 className="mb-0">Contacto</h2>
         </Card.Header>
         <Card.Body style={{ margin: "20px 0px", padding:"30px"}}>
@@ -101,7 +101,23 @@ const ContactModern = () => {
               />
             </Form.Group>
 
-            <Button type="submit" variant="primary" size="lg" style={{ borderRadius: "8px" }}>
+            <Button 
+              type="submit" 
+              size="lg" 
+              style={{ 
+                backgroundColor: "#f2ca30", 
+                border: "none",
+                color: "#000",
+                borderRadius: "8px",
+                fontWeight: "600"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#d4af28";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "#f2ca30";
+              }}
+            >
               Enviar Mensaje
             </Button>
           </Form>
