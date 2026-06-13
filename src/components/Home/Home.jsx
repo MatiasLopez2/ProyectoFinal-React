@@ -31,7 +31,7 @@ export default function Home(){
       <ControllCarousel />
 
       <div>
-        <h3 className='section-title'>PRODUCTOS EN OFERTA</h3>
+        <h3 className='section-title'>PRODUCTOS DESTACADOS</h3>
       </div>
 
       {featured.length > 0 && (

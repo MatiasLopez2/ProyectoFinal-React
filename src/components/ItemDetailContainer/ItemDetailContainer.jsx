@@ -11,6 +11,7 @@ import cartContext from "../../context/cartContext";
 export default function ItemDetailContainer() {
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
   const { idParam } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
@@ -48,7 +49,7 @@ export default function ItemDetailContainer() {
   <Row>
     {/* Galería de imágenes */}
     <Col md={6} className="product-gallery">
-      <div className="main-image">
+      <div className="main-image" onClick={() => setIsImageZoomed(true)} style={{ cursor: 'zoom-in' }}>
         <img src={selectedImage} alt={product.title} />
       </div>
       <div className="thumbs">
@@ -119,6 +120,74 @@ export default function ItemDetailContainer() {
       <p style={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{product.description}</p>
     </Col>
   </Row>
+
+  {/* Modal de imagen ampliada */}
+  {isImageZoomed && (
+    <div 
+      onClick={() => setIsImageZoomed(false)}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+        cursor: 'zoom-out',
+        padding: '20px'
+      }}
+    >
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsImageZoomed(false);
+        }}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          border: 'none',
+          borderRadius: '50%',
+          width: '45px',
+          height: '45px',
+          fontSize: '24px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          color: '#333',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'all 0.2s ease',
+          zIndex: 10000
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.background = '#fff';
+          e.target.style.transform = 'scale(1.1)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = 'rgba(255, 255, 255, 0.95)';
+          e.target.style.transform = 'scale(1)';
+        }}
+      >
+        ✕
+      </button>
+      <img 
+        src={selectedImage} 
+        alt={product.title}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '90vh',
+          objectFit: 'contain',
+          borderRadius: '8px'
+        }}
+      />
+    </div>
+  )}
 </Container>
     </>
   );
