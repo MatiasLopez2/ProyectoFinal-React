@@ -4,30 +4,15 @@ import { Truck, CreditCard, Home, CreditCardIcon } from "lucide-react";
 const servicesData = [
   {
     id: 1,
-    icon: Truck,
-    title: "Envíos a todo el país",
-    description: "Acercamos tu producto donde estés",
+    icon: CreditCard,
+    title: "Métodos de pago",
+    description: "Transferencia bancaria o efectivo en sucursal",
   },
   {
     id: 2,
-    icon: CreditCard,
-    title: "Todas las tarjetas",
-    description:
-      "A través de Mercado Pago, podés elegir pagar hasta con 2 tarjetas",
-  },
-  {
-    id: 3,
-    icon: CreditCardIcon,
-    title: "Comprá en 3 cuotas sin intereses",
-    description:
-      "Tenés que elegir la opción de Mercado Pago. Aplica a tarjetas bancarizadas",
-  },
-  {
-    id: 4,
     icon: Home,
-    title: "Horario Sucursal",
-    description:
-      "Lunes a Viernes de 8 a 17 Sábados de 8 a 12.30hs",
+    title: "Horario Atención",
+    description: "Lunes a Viernes de 8-17 hs.\nSábados de 8-12.30 hs",
   },
 ];
 

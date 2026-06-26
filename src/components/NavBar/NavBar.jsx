@@ -8,7 +8,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "../CartWidget/CartWidget";
 import logo from "/img/logotuerca2.png";
 import "./NavBar.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../data/firebase";
 
@@ -33,17 +33,11 @@ export default function NavBar({ cartCount }) {
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredSubcategories, setFilteredSubcategories] = useState([]);
-  const [showSearchResults, setShowSearchResults] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadCategoriesAndBrands();
-    
-    // Cerrar búsqueda al hacer clic fuera
-    const handleClickOutside = () => setShowSearchResults(false);
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   const loadCategoriesAndBrands = async () => {
@@ -55,20 +49,6 @@ export default function NavBar({ cartCount }) {
       setBrands(brandsSnap.docs.map(doc => doc.data()));
     } catch (error) {
       console.error('Error loading categories/brands:', error);
-    }
-  };
-
-  const handleSearch = (value) => {
-    setSearchTerm(value);
-    if (value.trim().length > 0) {
-      const subcats = categories
-        .filter(cat => cat.parentId && cat.name.toLowerCase().includes(value.toLowerCase()))
-        .sort((a, b) => a.name.localeCompare(b.name));
-      setFilteredSubcategories(subcats);
-      setShowSearchResults(true);
-    } else {
-      setFilteredSubcategories([]);
-      setShowSearchResults(false);
     }
   };
 
@@ -207,52 +187,26 @@ export default function NavBar({ cartCount }) {
             </HoverDropdown>
           </Nav>
 
-          {/* Buscador de subcategorías */}
-          <Form className="d-flex position-relative me-3" onClick={(e) => e.stopPropagation()}>
+          {/* Buscador de productos */}
+          <Form 
+            className="d-flex me-3" 
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (searchTerm.trim()) {
+                navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+                setSearchTerm('');
+              }
+            }}
+          >
             <Form.Control
               type="search"
-              placeholder="Buscar subcategorías..."
+              placeholder="Buscar productos..."
               className="me-2"
               aria-label="Search"
               value={searchTerm}
-              onChange={(e) => handleSearch(e.target.value)}
-              onFocus={() => searchTerm && setShowSearchResults(true)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               style={{ minWidth: '200px' }}
             />
-            {showSearchResults && filteredSubcategories.length > 0 && (
-              <div 
-                className="position-absolute bg-white border rounded shadow-sm"
-                style={{ 
-                  top: '100%', 
-                  left: 0, 
-                  right: 0, 
-                  maxHeight: '300px', 
-                  overflowY: 'auto',
-                  zIndex: 1000,
-                  marginTop: '5px'
-                }}
-              >
-                {filteredSubcategories.map(subcat => {
-                  const parent = categories.find(c => c.id === subcat.parentId);
-                  return (
-                    <Link
-                      key={subcat.value}
-                      to={`/category/${subcat.value}`}
-                      className="dropdown-item"
-                      onClick={() => {
-                        setSearchTerm('');
-                        setShowSearchResults(false);
-                      }}
-                      style={{ padding: '8px 12px' }}
-                    >
-                      <small className="text-muted">{parent?.name}</small>
-                      <br />
-                      <strong>{subcat.name}</strong>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
           </Form>
           
           {/* Carrito */}

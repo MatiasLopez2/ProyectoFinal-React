@@ -2,19 +2,32 @@ import React from "react";
 import { Container, Card } from "react-bootstrap";
 
 const HowToBuy = () => (
-  <Container className="my-5">
-    <Card>
-      <Card.Header className="bg-primary text-white">Cómo Realizar un Pedido</Card.Header>
-      <Card.Body style={{ margin: "20px 0px"}}>
-        <ul style={{listStyle: "inside", textAlign: "left"}}>
-          <li>Completa el formulario de pedido con tus datos y la información del producto o servicio que deseas.</li>
-          <li>Nuestro equipo revisará tu solicitud y se pondrá en contacto contigo para coordinar los detalles (disponibilidad, entrega o servicio).</li>
-          <li>Una vez confirmado, recibirás la información necesaria para completar tu pedido y coordinar la entrega o retiro.</li>
-        </ul>
-        <p>Así aseguramos que tu experiencia sea personalizada y correcta, sin compras automáticas en línea.</p>
-      </Card.Body>
-    </Card>
-  </Container>
+<Container className="my-5">
+  <Card>
+    <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", fontWeight: "600" }}>
+      Cómo Realizar un Pedido
+    </Card.Header>
+    <Card.Body style={{ margin: "20px 0px" }}>
+      <ul style={{ listStyle: "inside", textAlign: "left" }}>
+        <li>
+          Ponete en contacto con nosotros para consultar sobre los productos que te interesan.
+        </li>
+        <li>
+          Nos pondremos en contacto con vos para confirmar la disponibilidad y
+          preparar tu pedido.
+        </li>
+        <li>
+          El retiro y el pago se realizan en nuestro local. Aceptamos
+          transferencias y efectivo.
+        </li>
+      </ul>
+      <p>
+        De esta manera podemos confirmar el stock antes de la compra y brindarte
+        una mejor atención.
+      </p>
+    </Card.Body>
+  </Card>
+</Container>
 );
 
 export default HowToBuy;

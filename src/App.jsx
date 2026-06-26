@@ -20,6 +20,7 @@ import HowToBuy from "./components/Policy/HowToBuy"
 import Contact from "./components/Contact/Contact"
 import Admin from "./components/Admin/Admin"
 import AdminCRUD from "./components/AdminCRUD/AdminCRUD"
+import SearchResults from "./components/SearchResults/SearchResults"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,6 +33,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={ <Home></Home> } />
+          <Route path="/search" element={ <SearchResults></SearchResults> } />
           <Route path="/category/:categParam" greeting="Categoria" element={ <div className="category"><ItemListContainer></ItemListContainer></div> } />
           <Route path="/brand/:brandParam" greeting="Marcas" element={ <div className="category"><ItemListContainer></ItemListContainer></div> } />
           <Route path="/itemdetail/:idParam" element={ <ItemDetailContainer></ItemDetailContainer> } />

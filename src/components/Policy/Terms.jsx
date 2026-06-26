@@ -4,7 +4,7 @@ import { Container, Card } from "react-bootstrap";
 const Terms = () => (
   <Container className="my-5">
     <Card>
-      <Card.Header className="bg-primary text-white">Términos y Condiciones</Card.Header>
+      <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", fontWeight: "600" }}>Términos y Condiciones</Card.Header>
       <Card.Body style={{ margin: "20px 0px"}}>
         <p>
           Bienvenido a nuestra web. Al utilizar este sitio, aceptas que la información que nos brindes

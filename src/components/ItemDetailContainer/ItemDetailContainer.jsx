@@ -71,7 +71,25 @@ export default function ItemDetailContainer() {
       <div className="price-section">
         
         <span className="price-highlight fw-bold">${product.price}</span>
+        
       </div>
+
+      {/* Opción 1 - Destacado con fondo amarillo */}
+      <div style={{
+        backgroundColor: '#f2ca30',
+        padding: '10px 15px',
+        borderRadius: '8px',
+        marginBottom: '15px',
+        display: 'inline-block'
+      }}>
+        <span style={{ color: '#000', fontWeight: '600' }}>
+          Método de pago: Efectivo o transferencia
+        </span>
+      </div>
+
+      
+
+      {/* <p><span className="quantity">Método de pago: Efectivo o transferencia</span></p> */}
 
       {/* Cantidad */}
       {/* <p className="quantity">Cantidad</p>
@@ -115,9 +133,34 @@ export default function ItemDetailContainer() {
 
   {/* Descripción */}
   <Row className="mt-5">
-    <Col md={10} className="mx-auto product-description">
-      <h3 className="fw-bold mb-3">Descripción del Producto</h3>
-      <p style={{ whiteSpace: 'pre-line', textAlign: 'left' }}>{product.description}</p>
+    <Col md={10} className="mx-auto">
+      <div style={{
+        backgroundColor: '#fff',
+        borderRadius: '12px',
+        padding: '30px',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+        border: '1px solid #e9ecef'
+      }}>
+        <h3 style={{ 
+          fontWeight: '700', 
+          marginBottom: '25px',
+          color: '#333',
+          borderBottom: '3px solid #f2ca30',
+          paddingBottom: '10px',
+          display: 'inline-block'
+        }}>
+          Descripción del Producto
+        </h3>
+        <div style={{ 
+          whiteSpace: 'pre-line', 
+          textAlign: 'left',
+          lineHeight: '1.8',
+          color: '#555',
+          fontSize: '0.95rem'
+        }}>
+          {product.description}
+        </div>
+      </div>
     </Col>
   </Row>
 

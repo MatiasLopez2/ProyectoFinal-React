@@ -29,11 +29,11 @@ function Footer() {
                 Cómo Comprar
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/policy" >
                 Política de Devoluciones
               </Link>
-            </li>
+            </li> */}
             
           </ul>
         </div>

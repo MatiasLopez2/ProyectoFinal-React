@@ -71,7 +71,7 @@ export default function Home(){
       <Brands />
       <h3 className='section-title'>CATEGORIAS RECOMENDADAS</h3>
       <Grid />
-      <PayMethods />
+      {/* <PayMethods /> */}
       <Services />
     </>
   )

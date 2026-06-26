@@ -64,7 +64,7 @@ function Grid() {
                         toggleExpanded(idx);
                       }}
                       style={{ 
-                        color: '#007bff', 
+                        color: '#f2ca30', 
                         cursor: 'pointer',
                         fontWeight: '600',
                         marginLeft: '5px',
@@ -77,8 +77,20 @@ function Grid() {
                 </Card.Text>
                 <Link 
                   to={card.link} 
-                  className="btn btn-primary w-100"
-                  style={{ marginTop: 'auto' }}
+                  className="btn w-100"
+                  style={{ 
+                    marginTop: 'auto',
+                    backgroundColor: '#f2ca30',
+                    border: 'none',
+                    color: '#000',
+                    fontWeight: '600'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = '#d4af28';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = '#f2ca30';
+                  }}
                 >
                   Ver productos
                 </Link>

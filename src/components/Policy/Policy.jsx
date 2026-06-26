@@ -4,7 +4,7 @@ import { Container, Card } from "react-bootstrap";
 const Privacy = () => (
   <Container className="my-5">
     <Card>
-      <Card.Header className="bg-primary text-white">Política de Privacidad</Card.Header>
+      <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", fontWeight: "600" }}>Política de Privacidad</Card.Header>
       <Card.Body style={{ margin: "20px 0px"}}>
         <p>
           Valoramos tu privacidad. Toda la información que nos proporciones en el formulario

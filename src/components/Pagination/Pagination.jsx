@@ -1,10 +1,11 @@
 import Pagination from "react-bootstrap/Pagination";
+import "./Pagination.css";
 
 export default function PaginationComponent({ totalPages, currentPage, onPageChange }) {
   if (totalPages <= 1) return null;
 
   return (
-    <Pagination className="mt-4" style={{ justifyContent: "center" }}>
+    <Pagination className="mt-4 custom-pagination" style={{ justifyContent: "center" }}>
       {[...Array(totalPages)].map((_, idx) => (
         <Pagination.Item
           key={idx + 1}
