@@ -81,7 +81,7 @@ export default function SearchResults() {
 
       <Container className="my-5 search-results">
         {/* Header mejorado */}
-        <div style={{ 
+        <div className="search-header" style={{ 
           marginBottom: '40px',
           paddingBottom: '20px',
           borderBottom: '2px solid #f2ca30'
@@ -97,7 +97,7 @@ export default function SearchResults() {
           
           {/* Filtro activo con botón para quitar - solo si hay query */}
           {query && (
-            <div style={{ 
+            <div className="filter-badge" style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '10px', 
@@ -116,7 +116,7 @@ export default function SearchResults() {
                 borderRadius: '8px',
                 border: '2px solid #f2ca30'
               }}>
-                <span style={{ 
+                <span className="filter-text" style={{ 
                   color: '#f2ca30',
                   fontSize: '1.2rem',
                   fontWeight: '600'
@@ -125,6 +125,7 @@ export default function SearchResults() {
                 </span>
                 <button
                   onClick={handleRemoveFilter}
+                  className="filter-remove-btn"
                   style={{
                     background: 'none',
                     border: 'none',
@@ -152,7 +153,7 @@ export default function SearchResults() {
           )}
 
           {/* Nueva barra de búsqueda */}
-          <Form onSubmit={handleNewSearch} style={{ marginBottom: '20px' }}>
+          <Form onSubmit={handleNewSearch} className="search-form" style={{ marginBottom: '20px' }}>
             <InputGroup>
               <Form.Control
                 type="text"
@@ -182,7 +183,7 @@ export default function SearchResults() {
             </InputGroup>
           </Form>
 
-          <p style={{ 
+          <p className="results-count" style={{ 
             color: '#666', 
             fontSize: '1rem',
             fontWeight: '500'
