@@ -21,15 +21,16 @@ import Contact from "./components/Contact/Contact"
 import Admin from "./components/Admin/Admin"
 import AdminCRUD from "./components/AdminCRUD/AdminCRUD"
 import SearchResults from "./components/SearchResults/SearchResults"
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
   return (
-    <>
     <CartContextProvider>      
       <BrowserRouter>
+        <ScrollToTop />
         <NavBar/>
         <Routes>
           <Route path="/" element={ <Home></Home> } />
@@ -60,7 +61,6 @@ function App() {
         />
       </BrowserRouter>
     </CartContextProvider>
-    </>
   );
 }
 
