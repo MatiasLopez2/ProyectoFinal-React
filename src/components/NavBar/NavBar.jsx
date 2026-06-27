@@ -23,6 +23,7 @@ function HoverDropdown({ title, children }) {
       show={show}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
+      onToggle={(isOpen) => setShow(isOpen)}
     >
       {children}
     </NavDropdown>
@@ -34,6 +35,7 @@ export default function NavBar({ cartCount }) {
   const [brands, setBrands] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,16 +54,20 @@ export default function NavBar({ cartCount }) {
     }
   };
 
+  const handleNavClick = () => {
+    setExpanded(false);
+  };
+
   return (
-    <Navbar expand="lg" className="navbar-dark" style={{ backgroundColor: '#222' }}>
+    <Navbar expand="lg" className="navbar-dark" style={{ backgroundColor: '#222' }} expanded={expanded} onToggle={setExpanded}>
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/" onClick={handleNavClick}>
           <img className="logoHome" src={logo} alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+            <Nav.Link as={Link} to="/" onClick={handleNavClick}>Inicio</Nav.Link>
 
             <HoverDropdown title="Categorias">
               <div style={{ 
@@ -89,6 +95,7 @@ export default function NavBar({ cartCount }) {
                           key={mainCat.id}
                           as={Link}
                           to={`/category/${mainCat.value}`}
+                          onClick={handleNavClick}
                           onMouseEnter={() => setHoveredCategory(mainCat.id)}
                           style={{
                             fontWeight: '500',
@@ -147,6 +154,7 @@ export default function NavBar({ cartCount }) {
                               key={subCat.value}
                               as={Link}
                               to={`/category/${subCat.value}`}
+                              onClick={handleNavClick}
                               style={{
                                 fontSize: '0.9rem',
                                 padding: '8px 12px',
@@ -180,7 +188,7 @@ export default function NavBar({ cartCount }) {
 
             <HoverDropdown title="Marcas">
               {brands.sort((a, b) => a.name.localeCompare(b.name)).map(brand => (
-                <NavDropdown.Item key={brand.value} as={Link} to={`/brand/${brand.value}`}>
+                <NavDropdown.Item key={brand.value} as={Link} to={`/brand/${brand.value}`} onClick={handleNavClick}>
                   {brand.name.toUpperCase()}
                 </NavDropdown.Item>
               ))}
