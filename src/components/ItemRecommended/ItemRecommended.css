@@ -109,12 +109,23 @@ p.card-text {
 
 @media (max-width: 480px) {
   .card {
-    height: 300px;
+    height: auto;
+    max-width: max-content;
+    margin: 0 auto;
   }
+  
+  .card-img-top {
+    height: 160px;
+  }
+  
   .card-title {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
   .card-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+  
+  .swiper-wrapper .card-text {
+    font-size: 18px;
   }
 }

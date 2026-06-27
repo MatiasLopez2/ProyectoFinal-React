@@ -82,24 +82,34 @@
   .grid-mobile-list .row {
     gap: 25px;
   }
+
+  .card-body{
+    width: 100% !important;
+  }
   
   .grid-mobile-list .card-img-top {
     height: 180px;
   }
   
   .grid-mobile-list .card-body {
-    padding: 18px 25px 22px 25px;
+    padding: 18px 15px 22px 15px;
   }
+
+  .g-4.row.row-cols-md-2.row-cols-1 {
+    padding: 0px;
+}
   
   .card-title {
     font-size: 1.35rem;
     margin-bottom: 0.9rem;
+    text-align: center;
   }
   
   .card-text {
-    font-size: 15px;
+    font-size: 14px !important;
     line-height: 1.6;
     margin-bottom: 1.2rem;
+    text-align: left;
   }
   
   .grid-mobile-list .btn {
