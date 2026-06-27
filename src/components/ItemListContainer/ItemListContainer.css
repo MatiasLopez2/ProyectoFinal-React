@@ -30,13 +30,13 @@
   
   .category .products-list {
     justify-content: space-between;
-    gap: 4px;
+    gap: 8px;
   }
   
   .category .products-list a {
-    flex: 0 0 calc(50% - 2px) !important; /* 2 por fila en móvil */
+    flex: 0 0 calc(50% - 4px) !important; /* 2 por fila en móvil */
     min-width: 0;
-    max-width: calc(50% - 2px);
+    max-width: calc(50% - 4px);
   }
   
   .category .card {
@@ -66,6 +66,54 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 600px) {
+  .category {
+    padding: 12px 3px;
+  }
+  
+  .category h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .category .products-list {
+    gap: 7px;
+  }
+  
+  .category .products-list a {
+    flex: 0 0 calc(50% - 3.5px) !important;
+    min-width: 0;
+    max-width: calc(50% - 3.5px);
+  }
+  
+  .category .card {
+    border-radius: 5px;
+    min-height: auto;
+    height: auto;
+  }
+  
+  .category .card-img-top {
+    min-height: auto;
+    max-height: 75px;
+    padding: 2px;
+  }
+  
+  .category .card-body {
+    padding: 3px 2px;
+  }
+  
+  .category .card-title {
+    font-size: 0.65rem;
+    margin-bottom: 2px;
+    line-height: 1.05;
+  }
+  
+  .category .card-text {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 520px) {
   .category {
     padding: 10px 2px;
@@ -77,13 +125,13 @@
   }
   
   .category .products-list {
-    gap: 3px;
+    gap: 6px;
   }
   
   .category .products-list a {
-    flex: 0 0 calc(50% - 1.5px) !important;
+    flex: 0 0 calc(50% - 3px) !important;
     min-width: 0;
-    max-width: calc(50% - 1.5px);
+    max-width: calc(50% - 3px);
   }
   
   .category .card {

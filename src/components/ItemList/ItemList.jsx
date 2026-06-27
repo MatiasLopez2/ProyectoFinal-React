@@ -14,7 +14,7 @@ export default function ItemList({ products }) {
           to={`/itemdetail/${p.id}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <Card style={{ width: "18rem" }}>
+          <Card>
             <Card.Img
               variant="top"
               src={p.img[0]}
