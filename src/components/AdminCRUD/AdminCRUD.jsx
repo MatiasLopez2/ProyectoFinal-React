@@ -143,7 +143,7 @@ export default function AdminCRUD() {
           )}
 
           <Tabs defaultActiveKey="products" className="mb-3">
-            <Tab eventKey="products" title="📦 Productos">
+            <Tab eventKey="products" title={<span style={{color: '#000'}}>📦 Productos</span>}>
               <div className="mb-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <h5 className="mb-0">Total: {filteredProducts.length} de {products.length} productos</h5>
                 <div className="d-flex gap-2 flex-grow-1" style={{ maxWidth: '600px' }}>
@@ -217,7 +217,7 @@ export default function AdminCRUD() {
           )}
             </Tab>
 
-            <Tab eventKey="categories" title="🏷️ Categorías & Marcas">
+            <Tab eventKey="categories" title={<span style={{color: '#000'}}>🏷️ Categorías & Marcas</span>}>
               <CategoriesManager />
             </Tab>
           </Tabs>

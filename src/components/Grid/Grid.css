@@ -15,16 +15,95 @@
 
 /* Responsive mobile */
 @media (max-width: 768px) {
-  .card-img-top {
-    max-height: 200px;
+  .grid-mobile-list .row {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0;
+  }
+  
+  .grid-mobile-list .col {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .grid-mobile-list .card {
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    background: transparent;
+    margin: 0;
+  }
+  
+  .grid-mobile-list .card-img-top {
+    max-height: none;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    border-radius: 0;
+    object-fit: cover;
+    height: 220px;
+  }
+  
+  .grid-mobile-list .card-body {
+    padding: 20px 30px 25px 30px;
+    background: #fff;
   }
   
   .card-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #222;
+    text-align: center;
   }
   
   .card-text {
-    font-size: 0.9rem;
-    line-height: 1.4;
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 1.3rem;
+    text-align: left;
+    color: #444;
+  }
+  
+  .grid-mobile-list .btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+    padding: 13px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-mobile-list .row {
+    gap: 25px;
+  }
+  
+  .grid-mobile-list .card-img-top {
+    height: 180px;
+  }
+  
+  .grid-mobile-list .card-body {
+    padding: 18px 25px 22px 25px;
+  }
+  
+  .card-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.9rem;
+  }
+  
+  .card-text {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+  
+  .grid-mobile-list .btn {
+    padding: 12px;
+    font-size: 0.95rem;
   }
 }

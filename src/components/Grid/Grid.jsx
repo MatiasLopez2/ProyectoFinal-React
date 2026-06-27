@@ -41,7 +41,7 @@ function Grid() {
   };
 
   return (
-    <Row xs={1} md={2} className="g-4">
+    <Row xs={1} md={2} className={`g-4 ${isMobile ? 'grid-mobile-list' : ''}`}>
       {cardsData.map((card, idx) => {
         const isExpanded = expanded[idx];
         const shouldTruncate = isMobile && card.text.length > 150;
