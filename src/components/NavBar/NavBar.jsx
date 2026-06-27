@@ -95,7 +95,7 @@ export default function NavBar({ cartCount }) {
                           key={mainCat.id}
                           as={Link}
                           to={`/category/${mainCat.value}`}
-                          onClick={handleNavClick}
+                          onClick={hasSubcategories ? undefined : handleNavClick}
                           onMouseEnter={() => setHoveredCategory(mainCat.id)}
                           style={{
                             fontWeight: '500',
