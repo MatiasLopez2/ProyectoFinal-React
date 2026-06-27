@@ -98,7 +98,6 @@ p.card-text {
 @media (max-width: 768px) {
   .card {
     height: auto;
-    min-height: 300px;
   }
   .card-title {
     font-size: 1rem;

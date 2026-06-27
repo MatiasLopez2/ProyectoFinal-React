@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
-import emailjs from "emailjs-com"; 
+import emailjs from "emailjs-com";
+import "./Contact.css";
 
 const ContactModern = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const ContactModern = () => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5 contact-container">
       <Card style={{ borderRadius: "12px", boxShadow: "0 5px 20px rgba(0,0,0,0.1)" }}>
         <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", borderTopLeftRadius: "12px", borderTopRightRadius: "12px" }}>
           <h2 className="mb-0">Contacto</h2>

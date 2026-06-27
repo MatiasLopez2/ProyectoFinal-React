@@ -1,0 +1,166 @@
+.contact-container {
+  padding: 20px 15px;
+  max-width: 100%;
+  min-height: auto;
+}
+
+.contact-container .card {
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 100%;
+  min-height: auto;
+}
+
+.contact-container .card-header {
+  background-color: #f2ca30;
+  color: #000;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 20px;
+}
+
+.contact-container .card-header h2 {
+  margin-bottom: 0;
+}
+
+.contact-container .card-body {
+  margin: 20px 0px;
+  padding: 30px;
+  min-height: auto;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 15px 8px;
+  }
+  
+  .contact-container .card {
+    margin: 0 !important;
+  }
+  
+  .contact-container .card-header {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .contact-container .card-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .contact-container .card-body {
+    padding: 20px 16px !important;
+    margin: 0px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 15px 10px;
+    min-height: auto !important;
+  }
+  
+  .contact-container .card {
+    border-radius: 10px;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .contact-container .card-header {
+    padding: 14px 12px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .contact-container .card-header h2 {
+    font-size: 1.15rem;
+  }
+  
+  .contact-container .card-body {
+    padding: 16px 12px 30px 12px !important;
+    margin: 0px !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .contact-container .form-control {
+    font-size: 0.92rem;
+    padding: 9px 11px;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  .contact-container .btn {
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    width: 100%;
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-container textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .contact-container .mb-3 {
+    margin-bottom: 0.9rem !important;
+  }
+  
+  .contact-container .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .contact-container .col,
+  .contact-container [class*="col-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-container {
+    padding: 12px 6px;
+    min-height: auto !important;
+  }
+  
+  .contact-container .card {
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .contact-container .card-header {
+    padding: 12px 10px;
+  }
+  
+  .contact-container .card-header h2 {
+    font-size: 1.05rem;
+  }
+  
+  .contact-container .card-body {
+    padding: 14px 10px 25px 10px !important;
+    margin: 0px !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .contact-container .form-control {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+  
+  .contact-container .btn {
+    padding: 9px 16px;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-container textarea.form-control {
+    min-height: 90px;
+    resize: vertical;
+  }
+}
