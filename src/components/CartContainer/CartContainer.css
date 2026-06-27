@@ -10,5 +10,27 @@
 }
 
 .my-5.container {
-    min-height: 950px;
+    min-height: 660px;
+    margin-top: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .my-5.container {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    min-height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-5.container {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }

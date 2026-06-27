@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
+import "./Policy.css";
 
 const Terms = () => (
-  <Container className="my-5">
+  <Container className="my-5 policy-container">
     <Card>
       <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", fontWeight: "600" }}>Términos y Condiciones</Card.Header>
       <Card.Body style={{ margin: "20px 0px"}}>

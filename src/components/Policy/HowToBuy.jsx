@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
+import "./Policy.css";
 
 const HowToBuy = () => (
-<Container className="my-5">
+<Container className="my-5 policy-container">
   <Card>
     <Card.Header style={{ backgroundColor: "#f2ca30", color: "#000", fontWeight: "600" }}>
       Cómo Realizar un Pedido

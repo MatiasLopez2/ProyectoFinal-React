@@ -1,0 +1,81 @@
+.policy-container {
+  padding: 20px 15px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.policy-container .card {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+}
+
+.policy-container .card-header {
+  border-radius: 12px 12px 0 0 !important;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+}
+
+.policy-container .card-body {
+  padding: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.policy-container p,
+.policy-container li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.policy-container ul {
+  padding-left: 20px;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .policy-container {
+    padding: 15px 10px;
+  }
+  
+  .policy-container .card-header {
+    font-size: 1.1rem;
+    padding: 12px 15px;
+  }
+  
+  .policy-container .card-body {
+    padding: 15px;
+    margin: 10px 0 !important;
+  }
+  
+  .policy-container p,
+  .policy-container li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .policy-container ul {
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .policy-container {
+    padding: 10px 5px;
+  }
+  
+  .policy-container .card-header {
+    font-size: 1rem;
+    padding: 10px 12px;
+  }
+  
+  .policy-container .card-body {
+    padding: 12px;
+  }
+  
+  .policy-container p,
+  .policy-container li {
+    font-size: 0.9rem;
+  }
+}
